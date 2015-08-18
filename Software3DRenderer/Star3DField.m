@@ -54,6 +54,8 @@
     CGSize targetSize=[target getSize];
     float halfWidth=targetSize.width*0.5f;
     float halfHeight=targetSize.height*0.5f;
+    float tanHalfFOV=tanf((70.0/2.0)*(M_PI/180.0));
+    
      for(int i=0;i<[self.starX count];i++)
      {
          float curZ=[self.starZ[i] floatValue];
@@ -61,8 +63,8 @@
          if([self.starZ[i] floatValue]<0)
              [self initStarAtIndex:i];
          
-         int x=(int) (([self.starX[i] floatValue]/[self.starZ[i] floatValue])*halfWidth + halfWidth);
-         int y=(int) (([self.starY[i] floatValue]/[self.starZ[i] floatValue])*halfHeight + halfHeight);
+         int x=(int) (([self.starX[i] floatValue]/([self.starZ[i] floatValue]*tanHalfFOV))*halfWidth + halfWidth);
+         int y=(int) (([self.starY[i] floatValue]/([self.starZ[i] floatValue]*tanHalfFOV))*halfHeight + halfHeight);
          
          if((x<=0 || x>=(int)targetSize.width) ||
             (y<=0 || y>=(int)targetSize.height))
