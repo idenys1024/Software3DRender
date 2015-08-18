@@ -52,6 +52,7 @@ static CVReturn renderCallback(CVDisplayLinkRef displayLink,
 
 -(void) renderLoop:(NSTimeInterval) deltaTime
 {
+    //NSLog(@"dt=%f",deltaTime);
     self.canvasView.deltaTime=deltaTime;
     self.canvasView.needsDisplay=YES;
 }

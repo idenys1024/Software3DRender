@@ -8,10 +8,12 @@
 
 #import "CanvasView.h"
 #import "SWRBitmap.h"
+#import "Star3DField.h"
 
 @interface CanvasView()
 @property(strong,nonatomic) SWRBitmap *testBitmap;
 @property(strong,nonatomic) SWRBitmap *frameBuffer;
+@property(strong,nonatomic) Star3DField *star3DField;
 
 @end
 
@@ -26,6 +28,7 @@
         [_testBitmap clear:128];
         
         [self reinitFrameBuffer];
+        _star3DField=[[Star3DField alloc] initWithNimOfStars:4096 spread:64.0f speed:20.0f];
         NSLog (@"_frameBuffer: %f, %f", self.frame.size.width, self.frame.size.height);
         
         [[NSNotificationCenter defaultCenter]	addObserver:self
@@ -59,10 +62,12 @@
 
 - (void)drawRect:(NSRect)dirtyRect {
     [super drawRect:dirtyRect];
-    
+    /*
     [_frameBuffer clear:128];
     for(int x=10;x<100;x++)
         [_frameBuffer drawPixelAtpX:x pY:10 withA:255 B:255 G:0 R:0];
+    */
+    [self.star3DField updateAndRenderOnBitmap:self.frameBuffer withDeltaTime:self.deltaTime];
     
     [self swapBuffers];
   }
