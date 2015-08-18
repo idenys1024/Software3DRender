@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  CanvasView.h
 //  Software3DRenderer
 //
 //  Created by Denys Kunytskyi on 6/22/15.
@@ -7,9 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "CanvasView.h"
-@interface ViewController : NSViewController
 
-
+@interface CanvasView : NSView
+@property (nonatomic) NSTimeInterval deltaTime;
 @end
-
