@@ -54,7 +54,8 @@
     CGSize targetSize=[target getSize];
     float halfWidth=targetSize.width*0.5f;
     float halfHeight=targetSize.height*0.5f;
-    float tanHalfFOV=tanf((70.0/2.0)*(M_PI/180.0));
+    float FOVinDegree=70.0f;
+    float tanHalfFOV=tanf((FOVinDegree*0.5)*(M_PI/180.0));
     
      for(int i=0;i<[self.starX count];i++)
      {
