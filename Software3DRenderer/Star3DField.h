@@ -7,11 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-@class SWRBitmap;
+@class SWRRenderContext;
 @interface Star3DField : NSObject
 -(instancetype) initWithNimOfStars:(int) numStars
                             spread:(float) spread
                              speed:(float) speed;
 
--(void) updateAndRenderOnBitmap:(SWRBitmap*) target withDeltaTime:(float) delta;
+-(void) updateAndRenderOnBitmap:(SWRRenderContext*) target withDeltaTime:(float) delta;
 @end

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		921E91A91B83492E00FEFFC7 /* Star3DField.m in Sources */ = {isa = PBXBuildFile; fileRef = 921E91A81B83492E00FEFFC7 /* Star3DField.m */; };
+		922ED9081B84A190003A8F13 /* SWRRenderContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 922ED9071B84A190003A8F13 /* SWRRenderContext.m */; };
 		92FE32A31B381FE40048F2FB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FE32A21B381FE40048F2FB /* AppDelegate.m */; };
 		92FE32A51B381FE40048F2FB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FE32A41B381FE40048F2FB /* main.m */; };
 		92FE32A81B381FE40048F2FB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FE32A71B381FE40048F2FB /* ViewController.m */; };
@@ -31,6 +32,8 @@
 /* Begin PBXFileReference section */
 		921E91A71B83492E00FEFFC7 /* Star3DField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Star3DField.h; sourceTree = "<group>"; };
 		921E91A81B83492E00FEFFC7 /* Star3DField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Star3DField.m; sourceTree = "<group>"; };
+		922ED9061B84A190003A8F13 /* SWRRenderContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRRenderContext.h; sourceTree = "<group>"; };
+		922ED9071B84A190003A8F13 /* SWRRenderContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRRenderContext.m; sourceTree = "<group>"; };
 		92FE329C1B381FE40048F2FB /* Software3DRenderer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Software3DRenderer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		92FE32A01B381FE40048F2FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		92FE32A11B381FE40048F2FB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -88,15 +91,17 @@
 		92FE329E1B381FE40048F2FB /* Software3DRenderer */ = {
 			isa = PBXGroup;
 			children = (
+				92FE329F1B381FE40048F2FB /* Supporting Files */,
 				92FE32C21B3823700048F2FB /* CanvasView.h */,
 				92FE32C31B3823700048F2FB /* CanvasView.m */,
 				92FE32A61B381FE40048F2FB /* ViewController.h */,
 				92FE32A71B381FE40048F2FB /* ViewController.m */,
-				92FE329F1B381FE40048F2FB /* Supporting Files */,
 				92FE32C51B3856E80048F2FB /* SWRBitmap.h */,
 				92FE32C61B3856E80048F2FB /* SWRBitmap.m */,
 				921E91A71B83492E00FEFFC7 /* Star3DField.h */,
 				921E91A81B83492E00FEFFC7 /* Star3DField.m */,
+				922ED9061B84A190003A8F13 /* SWRRenderContext.h */,
+				922ED9071B84A190003A8F13 /* SWRRenderContext.m */,
 			);
 			path = Software3DRenderer;
 			sourceTree = "<group>";
@@ -230,6 +235,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				922ED9081B84A190003A8F13 /* SWRRenderContext.m in Sources */,
 				92FE32A81B381FE40048F2FB /* ViewController.m in Sources */,
 				92FE32A51B381FE40048F2FB /* main.m in Sources */,
 				92FE32C41B3823700048F2FB /* CanvasView.m in Sources */,

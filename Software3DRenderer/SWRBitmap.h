@@ -24,5 +24,5 @@ enum SWRBitmapColorSpace{
                     R:(uchar) r;
 -(void) copyToByteArray:(uchar*) dest; //copy from abgr to bgr
 -(CGSize) getSize;
--(const uchar** const) data;
+-(const uchar** const) componentsData;
 @end

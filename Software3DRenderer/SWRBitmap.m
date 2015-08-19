@@ -14,7 +14,7 @@
     NSUInteger _height;
     NSUInteger _numOfComponents;
     enum SWRBitmapColorSpace _colorSpace;
-    unsigned char* _components;// store pixels in abgr format
+    unsigned char* _components;// store pixels in abgr or rgba format
 }
 @end
 
@@ -49,8 +49,7 @@
 
 -(void) clear:(uchar) shade
 {
-    for(NSUInteger i=0;i<[self sizeOfComponents];i++)
-        _components[i]=shade;
+    memset(_components,shade,[self sizeOfComponents]);
 }
 
 -(void) drawPixelAtpX:(NSUInteger) x
@@ -61,6 +60,10 @@
                     R:(uchar) r
 
 {
+    
+    if(x>=_width||y>=_height)
+        return;
+    
     NSInteger index=(x+y*_width)*_numOfComponents;
     switch (_colorSpace) {
         case SWRBITMAP_ABGR:
@@ -97,10 +100,11 @@
     return CGSizeMake(_width, _height);
 }
 
--(const uchar** const) data
+-(const uchar** const) componentsData
 {
     return (const uchar** const)(&_components);
 }
+
 
 
 @end

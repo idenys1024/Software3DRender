@@ -7,7 +7,7 @@
 //
 
 #import "Star3DField.h"
-#import "SWRBitmap.h"
+#import "SWRRenderContext.h"
 
 @interface Star3DField()
 {
@@ -48,7 +48,7 @@
     self.starZ[index]=[NSNumber numberWithFloat:[self randomFloatBetween:0.0f and:0.5f]*self.spread];
 }
 
--(void) updateAndRenderOnBitmap:(SWRBitmap*) target withDeltaTime:(float) delta
+-(void) updateAndRenderOnBitmap:(SWRRenderContext*) target withDeltaTime:(float) delta
 {
     [target clear:0];
     CGSize targetSize=[target getSize];
