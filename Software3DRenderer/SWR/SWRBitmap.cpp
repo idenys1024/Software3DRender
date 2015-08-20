@@ -55,14 +55,24 @@ void SWRBitmap::DrawPixel(int pX,int pY,uchar a,uchar b,uchar g,uchar r)
 
 }
 
-int SWRBitmap::SizeOfComponents()
+int SWRBitmap::SizeOfComponents() const
 {
     return _width*_height*_numOfComponents;
 }
 
-const uchar** const SWRBitmap::GetComponentsData() const
+int SWRBitmap::GetWidth() const
 {
-    return (const uchar** const)(&_components);
+    return _width;
+}
+
+int SWRBitmap::GetHeight() const
+{
+    return _height;
+}
+
+const uchar* const SWRBitmap::GetComponentsData() const
+{
+    return _components;
 }
 
 

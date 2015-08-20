@@ -24,9 +24,11 @@ public:
     virtual ~SWRBitmap();
     void Clear(uchar shade);
     void DrawPixel(int pX,int pY,uchar a,uchar b,uchar g,uchar r);
-    const uchar** const GetComponentsData() const;
+    const uchar* const GetComponentsData() const;
+    int GetWidth() const;
+    int GetHeight() const;
 protected:
-    int SizeOfComponents();
+    int SizeOfComponents() const;
     int _width;
     int _height;
     int _numOfComponents;

@@ -44,7 +44,7 @@
     bitMap.Clear(clearVal);
     //bitMap.DrawPixel(0, 0, 200, 200, 200, 200);
     for(int i=0;i<w*h*4;i++)
-        XCTAssert(bitMap.GetComponentsData()[0][i]==clearVal, @"Bitmap clear fail ex=%d, equ=%d",clearVal,bitMap.GetComponentsData()[0][i]);
+        XCTAssert(bitMap.GetComponentsData()[i]==clearVal, @"Bitmap clear fail ex=%d, equ=%d",clearVal,bitMap.GetComponentsData()[i]);
     
     for(int i=0;i<25;i++)
     {
@@ -56,10 +56,10 @@
         int py=arc4random()%h;
         int index=(px+py*w)*4;
         bitMap.DrawPixel(px, py, a, b, g, r);
-        XCTAssert(bitMap.GetComponentsData()[0][index]==a, @"Bitmap DrawPixel fail ex=%d, equ=%d",a,bitMap.GetComponentsData()[0][index]);
-        XCTAssert(bitMap.GetComponentsData()[0][index+1]==b, @"Bitmap DrawPixel fail ex=%d, equ=%d",b,bitMap.GetComponentsData()[0][index+1]);
-        XCTAssert(bitMap.GetComponentsData()[0][index+2]==g, @"Bitmap DrawPixel fail ex=%d, equ=%d",g,bitMap.GetComponentsData()[0][index+2]);
-        XCTAssert(bitMap.GetComponentsData()[0][index+3]==r, @"Bitmap DrawPixel fail ex=%d, equ=%d",r,bitMap.GetComponentsData()[0][index+3]);
+        XCTAssert(bitMap.GetComponentsData()[index]==a, @"Bitmap DrawPixel fail ex=%d, equ=%d",a,bitMap.GetComponentsData()[index]);
+        XCTAssert(bitMap.GetComponentsData()[index+1]==b, @"Bitmap DrawPixel fail ex=%d, equ=%d",b,bitMap.GetComponentsData()[index+1]);
+        XCTAssert(bitMap.GetComponentsData()[index+2]==g, @"Bitmap DrawPixel fail ex=%d, equ=%d",g,bitMap.GetComponentsData()[index+2]);
+        XCTAssert(bitMap.GetComponentsData()[index+3]==r, @"Bitmap DrawPixel fail ex=%d, equ=%d",r,bitMap.GetComponentsData()[index+3]);
     }
     
     for(int i=0;i<25;i++)//tests for RGBA space
@@ -73,14 +73,11 @@
         int py=arc4random()%h;
         int index=(px+py*w)*4;
         bitMap.DrawPixel(px, py, a, b, g, r);
-        XCTAssert(bitMap.GetComponentsData()[0][index+3]==a, @"Bitmap DrawPixel fail ex=%d, equ=%d",a,bitMap.GetComponentsData()[0][index+3]);
-        XCTAssert(bitMap.GetComponentsData()[0][index+2]==b, @"Bitmap DrawPixel fail ex=%d, equ=%d",b,bitMap.GetComponentsData()[0][index+2]);
-        XCTAssert(bitMap.GetComponentsData()[0][index+1]==g, @"Bitmap DrawPixel fail ex=%d, equ=%d",g,bitMap.GetComponentsData()[0][index+1]);
-        XCTAssert(bitMap.GetComponentsData()[0][index+0]==r, @"Bitmap DrawPixel fail ex=%d, equ=%d",r,bitMap.GetComponentsData()[0][index+0]);
+        XCTAssert(bitMap.GetComponentsData()[index+3]==a, @"Bitmap DrawPixel fail ex=%d, equ=%d",a,bitMap.GetComponentsData()[index+3]);
+        XCTAssert(bitMap.GetComponentsData()[index+2]==b, @"Bitmap DrawPixel fail ex=%d, equ=%d",b,bitMap.GetComponentsData()[index+2]);
+        XCTAssert(bitMap.GetComponentsData()[index+1]==g, @"Bitmap DrawPixel fail ex=%d, equ=%d",g,bitMap.GetComponentsData()[index+1]);
+        XCTAssert(bitMap.GetComponentsData()[index+0]==r, @"Bitmap DrawPixel fail ex=%d, equ=%d",r,bitMap.GetComponentsData()[index+0]);
     }
-    
-    // This is an example of a functional test case.
-    XCTAssert(YES, @"Pass");
 }
 /*
 - (void)testPerformanceExample {
