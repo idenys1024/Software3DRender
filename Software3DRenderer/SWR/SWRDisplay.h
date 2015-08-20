@@ -10,7 +10,9 @@
 #define __Software3DRenderer__SWRDisplay__
 
 #include <stdio.h>
+#include <memory>
 class SWRRenderContext;
+class SWRScene;
 class SWRDisplay
 {
 public:
@@ -22,7 +24,9 @@ public:
     const unsigned char* const GetDisplayRGBAData() const;
     int GetWidth() const;
     int GetHeight() const;
+    void SetScene(std::shared_ptr<SWRScene> newScene);
 protected:
-    SWRRenderContext* _frameBuffer;
+    std::shared_ptr<SWRRenderContext> _frameBuffer;
+    std::shared_ptr<SWRScene> _currentScene;
 };
 #endif /* defined(__Software3DRenderer__SWRDisplay__) */

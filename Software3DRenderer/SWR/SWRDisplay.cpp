@@ -8,10 +8,11 @@
 
 #include "SWRDisplay.h"
 #include "SWRRenderContext.h"
+#include "SWRScene.h"
 
 SWRDisplay::SWRDisplay(int w,int h)
 {
-    _frameBuffer=new SWRRenderContext(w,h);
+    _frameBuffer.reset(new SWRRenderContext(w,h));
 }
 
 SWRDisplay::~SWRDisplay()
@@ -21,19 +22,26 @@ SWRDisplay::~SWRDisplay()
 
 void SWRDisplay::Resize(int newW, int newH)
 {
-    delete _frameBuffer;
-    _frameBuffer=new SWRRenderContext(newW,newH);
+    _frameBuffer.reset(new SWRRenderContext(newW,newH));
 }
 
 void SWRDisplay::DoDrawFrame(float deltaTime)
 {
-    _frameBuffer->Clear(0);
-    for(int j=100;j<200;j++)
-    {
-        _frameBuffer->DrawScanBuffer(j, 300-j, 300+j);
-    }
     
-    _frameBuffer->FillShape(100, 200);
+    if(_currentScene!=nullptr)
+    {
+        _currentScene->UpdateAndDraw(deltaTime, _frameBuffer);
+    }
+    else
+    {
+        _frameBuffer->Clear(0);
+        for(int j=100;j<200;j++)
+        {
+            _frameBuffer->DrawScanBuffer(j, 300-j, 300+j);
+        }
+        
+        _frameBuffer->FillShape(100, 200);
+    }
 }
 
 void SWRDisplay::SwapBuffers()
@@ -54,5 +62,10 @@ int SWRDisplay::GetWidth() const
 int SWRDisplay::GetHeight() const
 {
     return _frameBuffer->GetHeight();
+}
+
+void SWRDisplay::SetScene(std::shared_ptr<SWRScene> newScene)
+{
+    _currentScene=newScene;
 }
 

@@ -8,6 +8,7 @@
 
 #import "CanvasView.h"
 #import "SWRDisplay.h"
+#import "SWRScene.h"
 
 @interface CanvasView()
 @property(nonatomic) SWRDisplay* display;
@@ -22,6 +23,8 @@
     if(self)
     {
         _display=new SWRDisplay((int)self.frame.size.width,(int)self.frame.size.height);
+        _display->SetScene(std::shared_ptr<SWRScene>(new SWRScene()));
+        
         [[NSNotificationCenter defaultCenter]	addObserver:self
                                                  selector:@selector(onFrameSizeChange:)
                                                      name:NSViewFrameDidChangeNotification
@@ -33,6 +36,7 @@
 
 -(void) dealloc
 {
+    delete _display;
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
