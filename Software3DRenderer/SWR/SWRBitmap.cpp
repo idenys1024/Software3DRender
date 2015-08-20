@@ -14,6 +14,7 @@ SWRBitmap::SWRBitmap(int width, int height, SWRBitmapColorSpace colorSpace)
     _width=width;
     _height=height;
     _colorSpace=colorSpace;
+    _numOfComponents=4;
     _components=new uchar[SizeOfComponents()];
 }
 
