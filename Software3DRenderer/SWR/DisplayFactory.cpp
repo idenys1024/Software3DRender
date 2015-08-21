@@ -8,12 +8,14 @@
 
 #include "DisplayFactory.h"
 #include "Star3DFieldScene.h"
+#include "FillShapeScene.h"
 
 std::shared_ptr<SWRDisplay> DisplayFactory::GetConfiguredDisplay(int w,int h)
 {
     std::shared_ptr<SWRDisplay> display(new SWRDisplay(w,h));
     //display->SetScene(std::shared_ptr<SWRScene>(new SWRScene()));
-    display->SetScene(std::shared_ptr<SWRScene>(new Star3DFieldScene(4000,20.0f,60.0f)));
+    //display->SetScene(std::shared_ptr<SWRScene>(new Star3DFieldScene(4000,20.0f,60.0f)));
+    display->SetScene(std::shared_ptr<SWRScene>(new FillShapeScene()));
     
     return display;
 }

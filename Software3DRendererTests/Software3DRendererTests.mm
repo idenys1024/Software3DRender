@@ -9,6 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import <XCTest/XCTest.h>
 #import "SWRBitmap.h"
+#import "SWRRenderContext.h"
 
 @interface Software3DRendererTests : XCTestCase
 
@@ -25,12 +26,49 @@
     // Put teardown code here. This method is called after the invocation of each test method in the class.
     [super tearDown];
 }
-/*
-- (void)testExample {
-    // This is an example of a functional test case.
-    XCTAssert(YES, @"Pass");
+
+- (void)testRenderContext {
+    int minTestW=20;
+    int minTestH=20;
+    int maxTestW=2048;
+    int maxTestH=2048;
+    int w=minTestW+arc4random()%(maxTestW-minTestW);
+    int h=minTestH+arc4random()%(maxTestH-minTestH);
+    SWRRenderContext rc(w,h);
+    uchar clearVal=28;
+    uchar testR=255;
+    rc.Clear(clearVal);
+    for(int j=5;j<10;j++)
+        rc.DrawScanBuffer(j, 10-j, 10+j);
+    
+    rc.FillShape(5, 10);
+    
+    struct Point
+    {
+        int x;
+        int y;
+    };
+    const int rPointsCnt=3;
+    Point rPoints[rPointsCnt]={{5,5},{14,5},{14,9}};
+    
+    for(int i=0;i<rPointsCnt;i++)
+    {
+        int index=(rPoints[i].x+rPoints[i].y*w)*4;
+        XCTAssert(rc.GetComponentsData()[index+3]==testR, @"SWRRenderContext FillShape fail ex=%d, equ=%d",testR,rc.GetComponentsData()[index+3]);
+    }
+    
+    const int cPointsCnt=3;
+    Point cPoints[cPointsCnt]={{4,5},{15,5},{14,10}};
+    
+    for(int i=0;i<cPointsCnt;i++)
+    {
+        int index=(cPoints[i].x+cPoints[i].y*w)*4;
+        XCTAssert(rc.GetComponentsData()[index+3]==clearVal, @"SWRRenderContext FillShape fail ex=%d, equ=%d",clearVal,rc.GetComponentsData()[index+3]);
+    }
+    
+    //XCTAssert(YES, @"Pass");
 }
-*/
+
 - (void)testBitmap {
     
     int minTestW=10;
