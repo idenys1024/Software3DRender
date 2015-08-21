@@ -10,8 +10,9 @@
 #define __Software3DRenderer__SWRScene__
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <memory>
-class SWRRenderContext;
+#include "SWRRenderContext.h"
 
 class SWRScene
 {

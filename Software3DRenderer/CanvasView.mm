@@ -9,6 +9,7 @@
 #import "CanvasView.h"
 #import "SWRDisplay.h"
 #import "SWRScene.h"
+#import "Star3DFieldScene.h"
 
 @interface CanvasView()
 @property(nonatomic) SWRDisplay* display;
@@ -23,7 +24,7 @@
     if(self)
     {
         _display=new SWRDisplay((int)self.frame.size.width,(int)self.frame.size.height);
-        _display->SetScene(std::shared_ptr<SWRScene>(new SWRScene()));
+        _display->SetScene(std::shared_ptr<SWRScene>(new Star3DFieldScene(4000,20.0f,60.0f)));
         
         [[NSNotificationCenter defaultCenter]	addObserver:self
                                                  selector:@selector(onFrameSizeChange:)

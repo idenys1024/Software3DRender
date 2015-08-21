@@ -8,7 +8,7 @@
 
 #include "SWRScene.h"
 #include "SWRRenderContext.h"
-#include <stdlib.h>
+
 SWRScene::SWRScene()
 {
     
