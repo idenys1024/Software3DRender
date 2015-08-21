@@ -8,8 +8,9 @@
 
 #import <Cocoa/Cocoa.h>
 #import <XCTest/XCTest.h>
-#import "SWRBitmap.h"
-#import "SWRRenderContext.h"
+
+#import "RenderContext.h"
+using namespace SWR;
 
 @interface Software3DRendererTests : XCTestCase
 
@@ -34,7 +35,7 @@
     int maxTestH=2048;
     int w=minTestW+arc4random()%(maxTestW-minTestW);
     int h=minTestH+arc4random()%(maxTestH-minTestH);
-    SWRRenderContext rc(w,h);
+    RenderContext rc(w,h);
     uchar clearVal=28;
     uchar testR=255;
     rc.Clear(clearVal);
@@ -77,7 +78,7 @@
     int maxTestH=2048;
     int w=minTestW+arc4random()%(maxTestW-minTestW);
     int h=minTestH+arc4random()%(maxTestH-minTestH);
-    SWRBitmap bitMap(w,h,SWRBITMAP_ABGR);
+    Bitmap bitMap(w,h,BITMAP_ABGR);
     uchar clearVal=arc4random()%255;
     bitMap.Clear(clearVal);
     //bitMap.DrawPixel(0, 0, 200, 200, 200, 200);
@@ -102,7 +103,7 @@
     
     for(int i=0;i<25;i++)//tests for RGBA space
     {
-        SWRBitmap bitMap(w,h,SWRBITMAP_RGBA);
+        Bitmap bitMap(w,h,BITMAP_RGBA);
         uchar a=arc4random()%255;
         uchar b=arc4random()%255;
         uchar g=arc4random()%255;

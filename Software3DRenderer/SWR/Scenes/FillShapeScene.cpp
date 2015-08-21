@@ -9,7 +9,7 @@
 #include "FillShapeScene.h"
 
 
-void FillShapeScene::UpdateAndDraw(float deltatime, std::shared_ptr<SWRRenderContext> renderTarget)
+void FillShapeScene::UpdateAndDraw(float deltatime, std::shared_ptr<SWR::RenderContext> renderTarget)
 {
     renderTarget->Clear(28);
     for(int j=200;j<300;j++)

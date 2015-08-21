@@ -10,24 +10,26 @@
 #define __Software3DRenderer__Star3DFieldScene__
 
 #include <stdio.h>
-#include "SWRScene.h"
+#include "Scene.h"
 #include <vector>
 
-class Star3DFieldScene: public SWRScene
+class Star3DFieldScene: public SWR::Scene
 {
 public:
-    Star3DFieldScene(int numOfStars, float speed, float spread);
+    Star3DFieldScene(int numOfStars, float speed, float spread, float acceleration=0.0f);
     ~Star3DFieldScene();
-    virtual void UpdateAndDraw(float deltatime, std::shared_ptr<SWRRenderContext> renderTarget);
+    virtual void UpdateAndDraw(float deltatime, std::shared_ptr<SWR::RenderContext> renderTarget);
 protected:
     struct StarPosition
     {
         float x;
         float y;
         float z;
+        unsigned char bright;
     };
     float _speed;
     float _spread;
+    float _acceleration;
     typedef std::vector<StarPosition> StarsVct;
     StarsVct _starPositions;
     void InitStar(StarsVct::iterator ii);

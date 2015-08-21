@@ -1,24 +1,22 @@
 //
-//  FillShapeScene.h
+//  TrianglesScene.h
 //  Software3DRenderer
 //
 //  Created by Denys Kunytskyi on 8/21/15.
 //  Copyright (c) 2015 Denys Kunytskyi. All rights reserved.
 //
 
-#ifndef __Software3DRenderer__FillShapeScene__
-#define __Software3DRenderer__FillShapeScene__
+#ifndef __Software3DRenderer__TrianglesScene__
+#define __Software3DRenderer__TrianglesScene__
 
 #include "Scene.h"
 
-class FillShapeScene: public SWR::Scene
+class TrianglesScene: public SWR::Scene
 {
 public:
-    //FillShapeScene();
-    //~FillShapeScene();
     virtual void UpdateAndDraw(float deltatime, std::shared_ptr<SWR::RenderContext> renderTarget);
 protected:
     
 };
 
-#endif /* defined(__Software3DRenderer__FillShapeScene__) */
+#endif /* defined(__Software3DRenderer__TrianglesScene__) */

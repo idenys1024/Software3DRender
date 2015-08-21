@@ -9,10 +9,12 @@
 #include "Star3DFieldScene.h"
 #include <math.h>
 
-Star3DFieldScene::Star3DFieldScene(int numOfStars, float speed, float spread):SWRScene()
+
+Star3DFieldScene::Star3DFieldScene(int numOfStars, float speed, float spread,float acceleration):SWR::Scene()
 {
     _speed=speed;
     _spread=spread;
+    _acceleration=acceleration;
     _starPositions.resize(numOfStars);
     for(StarsVct::iterator ii=_starPositions.begin();ii!=_starPositions.end();ii++)
         InitStar(ii);
@@ -34,9 +36,10 @@ void Star3DFieldScene::InitStar(StarsVct::iterator ii)
     sp.x=Random(-1.0f, 1.0f)*_spread;
     sp.y=Random(-1.0f, 1.0f)*_spread;
     sp.z=Random(0.0f, 1.5f)*_spread;
+    sp.bright=0;
 }
 
-void Star3DFieldScene::UpdateAndDraw(float deltatime, std::shared_ptr<SWRRenderContext> renderTarget)
+void Star3DFieldScene::UpdateAndDraw(float deltatime, std::shared_ptr<SWR::RenderContext> renderTarget)
 {
     renderTarget->Clear(0);
     
@@ -47,11 +50,18 @@ void Star3DFieldScene::UpdateAndDraw(float deltatime, std::shared_ptr<SWRRenderC
     
     int w=renderTarget->GetWidth();
     int h=renderTarget->GetHeight();
+    _speed+=deltatime*_acceleration;
     for(StarsVct::iterator ii=_starPositions.begin();ii!=_starPositions.end();ii++)
     {
         StarPosition& cs=*ii;
         cs.z=cs.z-deltatime*_speed;
-        
+        if(cs.bright<255)
+        {
+            if(cs.bright+deltatime*1000>255)
+                cs.bright=255;
+            else
+                cs.bright+=deltatime*1000;
+        }
         if(cs.z<0)
         {
             InitStar(ii);
@@ -68,7 +78,7 @@ void Star3DFieldScene::UpdateAndDraw(float deltatime, std::shared_ptr<SWRRenderC
         }
         else
         {
-            renderTarget->DrawPixel(x, y, 255, 255, 255, 255);
+            renderTarget->DrawPixel(x, y, cs.bright, cs.bright, cs.bright, cs.bright);
         }
     }
 }

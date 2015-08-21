@@ -6,20 +6,20 @@
 //  Copyright (c) 2015 Denys Kunytskyi. All rights reserved.
 //
 
-#include "SWRRenderContext.h"
+#include "RenderContext.h"
+using namespace SWR;
 
-
-SWRRenderContext::SWRRenderContext(int w, int h):SWRBitmap(w,h,SWRBITMAP_RGBA)
+RenderContext::RenderContext(int w, int h):Bitmap(w,h,BITMAP_RGBA)
 {
     _scanBuffer=new int[h*2];
 }
 
-SWRRenderContext::~SWRRenderContext()
+RenderContext::~RenderContext()
 {
     delete [] _scanBuffer;
 }
 
-void SWRRenderContext::DrawScanBuffer(int yCoord, int xMin, int xMax)
+void RenderContext::DrawScanBuffer(int yCoord, int xMin, int xMax)
 {
     if(yCoord>=_height)
         return;
@@ -28,7 +28,7 @@ void SWRRenderContext::DrawScanBuffer(int yCoord, int xMin, int xMax)
     _scanBuffer[yCoord*2+1]=xMax;
 }
 
-void SWRRenderContext::FillShape(int yMin, int yMax)
+void RenderContext::FillShape(int yMin, int yMax)
 {
     for (int j=yMin; j<yMax; j++)
     {

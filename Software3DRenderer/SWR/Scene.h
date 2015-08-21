@@ -12,13 +12,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <memory>
-#include "SWRRenderContext.h"
-
-class SWRScene
-{
-public:
-    SWRScene();
-    virtual ~SWRScene();
-    virtual void UpdateAndDraw(float deltatime, std::shared_ptr<SWRRenderContext> renderTarget);
-};
+#include "RenderContext.h"
+namespace SWR{
+    
+    class Scene
+    {
+    public:
+        Scene();
+        virtual ~Scene();
+        virtual void UpdateAndDraw(float deltatime, std::shared_ptr<RenderContext> renderTarget);
+    };
+}
 #endif /* defined(__Software3DRenderer__SWRScene__) */

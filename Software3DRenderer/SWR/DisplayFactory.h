@@ -10,14 +10,15 @@
 #define __Software3DRenderer__DisplayFactory__
 
 #include <memory>
-#include "SWRDisplay.h"
-
+#include "Display.h"
+namespace SWR
+{
 class DisplayFactory
 {
 public:
-    static std::shared_ptr<SWRDisplay> GetConfiguredDisplay(int w,int h);
+    static std::shared_ptr<Display> GetConfiguredDisplay(int w,int h);
     
 };
-
+}
 
 #endif /* defined(__Software3DRenderer__DisplayFactory__) */

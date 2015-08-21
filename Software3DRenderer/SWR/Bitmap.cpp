@@ -6,10 +6,11 @@
 //  Copyright (c) 2015 Denys Kunytskyi. All rights reserved.
 //
 
-#include "SWRBitmap.h"
+#include "Bitmap.h"
 #include <cstring>
+using namespace SWR;
 
-SWRBitmap::SWRBitmap(int width, int height, SWRBitmapColorSpace colorSpace)
+Bitmap::Bitmap(int width, int height, BitmapColorSpace colorSpace)
 {
     _width=width;
     _height=height;
@@ -18,31 +19,31 @@ SWRBitmap::SWRBitmap(int width, int height, SWRBitmapColorSpace colorSpace)
     _components=new uchar[SizeOfComponents()];
 }
 
-SWRBitmap::~SWRBitmap()
+Bitmap::~Bitmap()
 {
     delete [] _components;
 }
 
-void SWRBitmap::Clear(uchar shade)
+void Bitmap::Clear(uchar shade)
 {
     memset(_components, shade, SizeOfComponents());
 }
 
-void SWRBitmap::DrawPixel(int pX,int pY,uchar a,uchar b,uchar g,uchar r)
+void Bitmap::DrawPixel(int pX,int pY,uchar a,uchar b,uchar g,uchar r)
 {
     if(pX>=_width||pY>=_height)
         return;
     
     int index=(pX+pY*_width)*_numOfComponents;
     switch (_colorSpace) {
-        case SWRBITMAP_ABGR:
+        case BITMAP_ABGR:
             _components[index  ]=a;
             _components[index+1]=b;
             _components[index+2]=g;
             _components[index+3]=r;
             
             break;
-        case SWRBITMAP_RGBA:
+        case BITMAP_RGBA:
             _components[index  ]=r;
             _components[index+1]=g;
             _components[index+2]=b;
@@ -52,25 +53,24 @@ void SWRBitmap::DrawPixel(int pX,int pY,uchar a,uchar b,uchar g,uchar r)
             
             break;
     }
-
 }
 
-int SWRBitmap::SizeOfComponents() const
+int Bitmap::SizeOfComponents() const
 {
     return _width*_height*_numOfComponents;
 }
 
-int SWRBitmap::GetWidth() const
+int Bitmap::GetWidth() const
 {
     return _width;
 }
 
-int SWRBitmap::GetHeight() const
+int Bitmap::GetHeight() const
 {
     return _height;
 }
 
-const uchar* const SWRBitmap::GetComponentsData() const
+const uchar* const Bitmap::GetComponentsData() const
 {
     return _components;
 }

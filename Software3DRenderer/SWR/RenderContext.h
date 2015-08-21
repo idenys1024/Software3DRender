@@ -10,17 +10,20 @@
 #define __Software3DRenderer__SWRRenderContext__
 
 #include <stdio.h>
-#include "SWRBitmap.h"
+#include "Bitmap.h"
 
-class SWRRenderContext: public SWRBitmap
+namespace SWR{
+    
+class RenderContext: public Bitmap
 {
 public:
-    SWRRenderContext(int w, int h);
-    virtual ~SWRRenderContext();
+    RenderContext(int w, int h);
+    virtual ~RenderContext();
     void DrawScanBuffer(int yCoord, int xMin, int xMax);
     void FillShape(int yMin, int yMax);
 protected:
     int* _scanBuffer;
 };
-
+    
+}
 #endif /* defined(__Software3DRenderer__SWRRenderContext__) */
