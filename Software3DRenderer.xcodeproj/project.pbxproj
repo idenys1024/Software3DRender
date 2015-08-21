@@ -7,16 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		921E91A91B83492E00FEFFC7 /* Star3DField.m in Sources */ = {isa = PBXBuildFile; fileRef = 921E91A81B83492E00FEFFC7 /* Star3DField.m */; };
-		922ED9081B84A190003A8F13 /* SWRRenderContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 922ED9071B84A190003A8F13 /* SWRRenderContext.m */; };
+		9250E03E1B85E4670080DCBC /* SWRBitmap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9250E03A1B85CBE30080DCBC /* SWRBitmap.cpp */; };
+		9250E0441B8601F50080DCBC /* SWRRenderContext.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9250E0421B8601F50080DCBC /* SWRRenderContext.cpp */; };
+		9250E0471B8605DE0080DCBC /* SWRDisplay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9250E0451B8605DE0080DCBC /* SWRDisplay.cpp */; };
+		9250E04A1B8613690080DCBC /* SWRScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9250E0481B8613690080DCBC /* SWRScene.cpp */; };
+		9250E04D1B8627E00080DCBC /* Star3DFieldScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9250E04B1B8627E00080DCBC /* Star3DFieldScene.cpp */; };
+		9250E0511B873D180080DCBC /* DisplayFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9250E04F1B873D180080DCBC /* DisplayFactory.cpp */; };
 		92FE32A31B381FE40048F2FB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FE32A21B381FE40048F2FB /* AppDelegate.m */; };
 		92FE32A51B381FE40048F2FB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FE32A41B381FE40048F2FB /* main.m */; };
 		92FE32A81B381FE40048F2FB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FE32A71B381FE40048F2FB /* ViewController.m */; };
 		92FE32AA1B381FE40048F2FB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92FE32A91B381FE40048F2FB /* Images.xcassets */; };
 		92FE32AD1B381FE40048F2FB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92FE32AB1B381FE40048F2FB /* Main.storyboard */; };
-		92FE32B91B381FE40048F2FB /* Software3DRendererTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FE32B81B381FE40048F2FB /* Software3DRendererTests.m */; };
-		92FE32C41B3823700048F2FB /* CanvasView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FE32C31B3823700048F2FB /* CanvasView.m */; };
-		92FE32C71B3856E80048F2FB /* SWRBitmap.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FE32C61B3856E80048F2FB /* SWRBitmap.m */; };
+		92FE32B91B381FE40048F2FB /* Software3DRendererTests.mm in Sources */ = {isa = PBXBuildFile; fileRef = 92FE32B81B381FE40048F2FB /* Software3DRendererTests.mm */; };
+		92FE32C41B3823700048F2FB /* CanvasView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 92FE32C31B3823700048F2FB /* CanvasView.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,10 +33,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		921E91A71B83492E00FEFFC7 /* Star3DField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Star3DField.h; sourceTree = "<group>"; };
-		921E91A81B83492E00FEFFC7 /* Star3DField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Star3DField.m; sourceTree = "<group>"; };
-		922ED9061B84A190003A8F13 /* SWRRenderContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRRenderContext.h; sourceTree = "<group>"; };
-		922ED9071B84A190003A8F13 /* SWRRenderContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRRenderContext.m; sourceTree = "<group>"; };
+		9250E03A1B85CBE30080DCBC /* SWRBitmap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SWRBitmap.cpp; sourceTree = "<group>"; };
+		9250E03B1B85CBE30080DCBC /* SWRBitmap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRBitmap.h; sourceTree = "<group>"; };
+		9250E0421B8601F50080DCBC /* SWRRenderContext.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SWRRenderContext.cpp; sourceTree = "<group>"; };
+		9250E0431B8601F50080DCBC /* SWRRenderContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRRenderContext.h; sourceTree = "<group>"; };
+		9250E0451B8605DE0080DCBC /* SWRDisplay.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SWRDisplay.cpp; sourceTree = "<group>"; };
+		9250E0461B8605DE0080DCBC /* SWRDisplay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRDisplay.h; sourceTree = "<group>"; };
+		9250E0481B8613690080DCBC /* SWRScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SWRScene.cpp; sourceTree = "<group>"; };
+		9250E0491B8613690080DCBC /* SWRScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRScene.h; sourceTree = "<group>"; };
+		9250E04B1B8627E00080DCBC /* Star3DFieldScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Star3DFieldScene.cpp; sourceTree = "<group>"; };
+		9250E04C1B8627E00080DCBC /* Star3DFieldScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Star3DFieldScene.h; sourceTree = "<group>"; };
+		9250E04F1B873D180080DCBC /* DisplayFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DisplayFactory.cpp; sourceTree = "<group>"; };
+		9250E0501B873D180080DCBC /* DisplayFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DisplayFactory.h; sourceTree = "<group>"; };
 		92FE329C1B381FE40048F2FB /* Software3DRenderer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Software3DRenderer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		92FE32A01B381FE40048F2FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		92FE32A11B381FE40048F2FB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -45,11 +56,9 @@
 		92FE32AC1B381FE40048F2FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		92FE32B21B381FE40048F2FB /* Software3DRendererTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Software3DRendererTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		92FE32B71B381FE40048F2FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		92FE32B81B381FE40048F2FB /* Software3DRendererTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Software3DRendererTests.m; sourceTree = "<group>"; };
+		92FE32B81B381FE40048F2FB /* Software3DRendererTests.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = Software3DRendererTests.mm; sourceTree = "<group>"; };
 		92FE32C21B3823700048F2FB /* CanvasView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CanvasView.h; sourceTree = "<group>"; };
-		92FE32C31B3823700048F2FB /* CanvasView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CanvasView.m; sourceTree = "<group>"; };
-		92FE32C51B3856E80048F2FB /* SWRBitmap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRBitmap.h; sourceTree = "<group>"; };
-		92FE32C61B3856E80048F2FB /* SWRBitmap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRBitmap.m; sourceTree = "<group>"; };
+		92FE32C31B3823700048F2FB /* CanvasView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CanvasView.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +79,45 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9250E0361B85CB360080DCBC /* SWR */ = {
+			isa = PBXGroup;
+			children = (
+				9250E04E1B8627E70080DCBC /* Scenes */,
+				9250E03A1B85CBE30080DCBC /* SWRBitmap.cpp */,
+				9250E03B1B85CBE30080DCBC /* SWRBitmap.h */,
+				9250E0421B8601F50080DCBC /* SWRRenderContext.cpp */,
+				9250E0431B8601F50080DCBC /* SWRRenderContext.h */,
+				9250E0451B8605DE0080DCBC /* SWRDisplay.cpp */,
+				9250E0461B8605DE0080DCBC /* SWRDisplay.h */,
+				9250E0481B8613690080DCBC /* SWRScene.cpp */,
+				9250E0491B8613690080DCBC /* SWRScene.h */,
+				9250E04F1B873D180080DCBC /* DisplayFactory.cpp */,
+				9250E0501B873D180080DCBC /* DisplayFactory.h */,
+			);
+			path = SWR;
+			sourceTree = "<group>";
+		};
+		9250E04E1B8627E70080DCBC /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				9250E04C1B8627E00080DCBC /* Star3DFieldScene.h */,
+				9250E04B1B8627E00080DCBC /* Star3DFieldScene.cpp */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		9250E0521B873F380080DCBC /* OSX */ = {
+			isa = PBXGroup;
+			children = (
+				92FE329F1B381FE40048F2FB /* Supporting Files */,
+				92FE32C21B3823700048F2FB /* CanvasView.h */,
+				92FE32C31B3823700048F2FB /* CanvasView.mm */,
+				92FE32A61B381FE40048F2FB /* ViewController.h */,
+				92FE32A71B381FE40048F2FB /* ViewController.m */,
+			);
+			name = OSX;
+			sourceTree = "<group>";
+		};
 		92FE32931B381FE40048F2FB = {
 			isa = PBXGroup;
 			children = (
@@ -91,17 +139,8 @@
 		92FE329E1B381FE40048F2FB /* Software3DRenderer */ = {
 			isa = PBXGroup;
 			children = (
-				92FE329F1B381FE40048F2FB /* Supporting Files */,
-				92FE32C21B3823700048F2FB /* CanvasView.h */,
-				92FE32C31B3823700048F2FB /* CanvasView.m */,
-				92FE32A61B381FE40048F2FB /* ViewController.h */,
-				92FE32A71B381FE40048F2FB /* ViewController.m */,
-				92FE32C51B3856E80048F2FB /* SWRBitmap.h */,
-				92FE32C61B3856E80048F2FB /* SWRBitmap.m */,
-				921E91A71B83492E00FEFFC7 /* Star3DField.h */,
-				921E91A81B83492E00FEFFC7 /* Star3DField.m */,
-				922ED9061B84A190003A8F13 /* SWRRenderContext.h */,
-				922ED9071B84A190003A8F13 /* SWRRenderContext.m */,
+				9250E0521B873F380080DCBC /* OSX */,
+				9250E0361B85CB360080DCBC /* SWR */,
 			);
 			path = Software3DRenderer;
 			sourceTree = "<group>";
@@ -122,7 +161,7 @@
 		92FE32B51B381FE40048F2FB /* Software3DRendererTests */ = {
 			isa = PBXGroup;
 			children = (
-				92FE32B81B381FE40048F2FB /* Software3DRendererTests.m */,
+				92FE32B81B381FE40048F2FB /* Software3DRendererTests.mm */,
 				92FE32B61B381FE40048F2FB /* Supporting Files */,
 			);
 			path = Software3DRendererTests;
@@ -235,13 +274,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				922ED9081B84A190003A8F13 /* SWRRenderContext.m in Sources */,
+				9250E03E1B85E4670080DCBC /* SWRBitmap.cpp in Sources */,
 				92FE32A81B381FE40048F2FB /* ViewController.m in Sources */,
 				92FE32A51B381FE40048F2FB /* main.m in Sources */,
-				92FE32C41B3823700048F2FB /* CanvasView.m in Sources */,
+				92FE32C41B3823700048F2FB /* CanvasView.mm in Sources */,
 				92FE32A31B381FE40048F2FB /* AppDelegate.m in Sources */,
-				92FE32C71B3856E80048F2FB /* SWRBitmap.m in Sources */,
-				921E91A91B83492E00FEFFC7 /* Star3DField.m in Sources */,
+				9250E0511B873D180080DCBC /* DisplayFactory.cpp in Sources */,
+				9250E04A1B8613690080DCBC /* SWRScene.cpp in Sources */,
+				9250E04D1B8627E00080DCBC /* Star3DFieldScene.cpp in Sources */,
+				9250E0441B8601F50080DCBC /* SWRRenderContext.cpp in Sources */,
+				9250E0471B8605DE0080DCBC /* SWRDisplay.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -249,7 +291,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				92FE32B91B381FE40048F2FB /* Software3DRendererTests.m in Sources */,
+				92FE32B91B381FE40048F2FB /* Software3DRendererTests.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
