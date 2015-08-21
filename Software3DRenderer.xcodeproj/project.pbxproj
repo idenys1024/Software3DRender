@@ -12,6 +12,7 @@
 		9250E0471B8605DE0080DCBC /* SWRDisplay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9250E0451B8605DE0080DCBC /* SWRDisplay.cpp */; };
 		9250E04A1B8613690080DCBC /* SWRScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9250E0481B8613690080DCBC /* SWRScene.cpp */; };
 		9250E04D1B8627E00080DCBC /* Star3DFieldScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9250E04B1B8627E00080DCBC /* Star3DFieldScene.cpp */; };
+		9250E0511B873D180080DCBC /* DisplayFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9250E04F1B873D180080DCBC /* DisplayFactory.cpp */; };
 		92FE32A31B381FE40048F2FB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FE32A21B381FE40048F2FB /* AppDelegate.m */; };
 		92FE32A51B381FE40048F2FB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FE32A41B381FE40048F2FB /* main.m */; };
 		92FE32A81B381FE40048F2FB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FE32A71B381FE40048F2FB /* ViewController.m */; };
@@ -42,6 +43,8 @@
 		9250E0491B8613690080DCBC /* SWRScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRScene.h; sourceTree = "<group>"; };
 		9250E04B1B8627E00080DCBC /* Star3DFieldScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Star3DFieldScene.cpp; sourceTree = "<group>"; };
 		9250E04C1B8627E00080DCBC /* Star3DFieldScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Star3DFieldScene.h; sourceTree = "<group>"; };
+		9250E04F1B873D180080DCBC /* DisplayFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DisplayFactory.cpp; sourceTree = "<group>"; };
+		9250E0501B873D180080DCBC /* DisplayFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DisplayFactory.h; sourceTree = "<group>"; };
 		92FE329C1B381FE40048F2FB /* Software3DRenderer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Software3DRenderer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		92FE32A01B381FE40048F2FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		92FE32A11B381FE40048F2FB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -88,6 +91,8 @@
 				9250E0461B8605DE0080DCBC /* SWRDisplay.h */,
 				9250E0481B8613690080DCBC /* SWRScene.cpp */,
 				9250E0491B8613690080DCBC /* SWRScene.h */,
+				9250E04F1B873D180080DCBC /* DisplayFactory.cpp */,
+				9250E0501B873D180080DCBC /* DisplayFactory.h */,
 			);
 			path = SWR;
 			sourceTree = "<group>";
@@ -99,6 +104,18 @@
 				9250E04B1B8627E00080DCBC /* Star3DFieldScene.cpp */,
 			);
 			path = Scenes;
+			sourceTree = "<group>";
+		};
+		9250E0521B873F380080DCBC /* OSX */ = {
+			isa = PBXGroup;
+			children = (
+				92FE329F1B381FE40048F2FB /* Supporting Files */,
+				92FE32C21B3823700048F2FB /* CanvasView.h */,
+				92FE32C31B3823700048F2FB /* CanvasView.mm */,
+				92FE32A61B381FE40048F2FB /* ViewController.h */,
+				92FE32A71B381FE40048F2FB /* ViewController.m */,
+			);
+			name = OSX;
 			sourceTree = "<group>";
 		};
 		92FE32931B381FE40048F2FB = {
@@ -122,12 +139,8 @@
 		92FE329E1B381FE40048F2FB /* Software3DRenderer */ = {
 			isa = PBXGroup;
 			children = (
+				9250E0521B873F380080DCBC /* OSX */,
 				9250E0361B85CB360080DCBC /* SWR */,
-				92FE329F1B381FE40048F2FB /* Supporting Files */,
-				92FE32C21B3823700048F2FB /* CanvasView.h */,
-				92FE32C31B3823700048F2FB /* CanvasView.mm */,
-				92FE32A61B381FE40048F2FB /* ViewController.h */,
-				92FE32A71B381FE40048F2FB /* ViewController.m */,
 			);
 			path = Software3DRenderer;
 			sourceTree = "<group>";
@@ -266,6 +279,7 @@
 				92FE32A51B381FE40048F2FB /* main.m in Sources */,
 				92FE32C41B3823700048F2FB /* CanvasView.mm in Sources */,
 				92FE32A31B381FE40048F2FB /* AppDelegate.m in Sources */,
+				9250E0511B873D180080DCBC /* DisplayFactory.cpp in Sources */,
 				9250E04A1B8613690080DCBC /* SWRScene.cpp in Sources */,
 				9250E04D1B8627E00080DCBC /* Star3DFieldScene.cpp in Sources */,
 				9250E0441B8601F50080DCBC /* SWRRenderContext.cpp in Sources */,

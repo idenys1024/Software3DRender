@@ -16,6 +16,7 @@ class SWRScene;
 class SWRDisplay
 {
 public:
+    static std::shared_ptr<SWRDisplay> GetConfiguredDisplay(int w,int h);
     SWRDisplay(int w,int h);
     virtual ~SWRDisplay();
     void Resize(int newW, int newH);

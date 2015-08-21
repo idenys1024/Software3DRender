@@ -10,6 +10,8 @@
 #include "SWRRenderContext.h"
 #include "SWRScene.h"
 
+
+
 SWRDisplay::SWRDisplay(int w,int h)
 {
     _frameBuffer.reset(new SWRRenderContext(w,h));
