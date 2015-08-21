@@ -11,6 +11,7 @@
 
 #include <stdio.h>
 #include "Bitmap.h"
+#include "Vertex.h"
 
 namespace SWR{
     
@@ -21,7 +22,9 @@ public:
     virtual ~RenderContext();
     void DrawScanBuffer(int yCoord, int xMin, int xMax);
     void FillShape(int yMin, int yMax);
+    void ScanConvertTriangle(Vertex minYv, Vertex midYv, Vertex maxYv, int side);
 protected:
+    void ScanConvertLine(Vertex minY,Vertex maxY,int side);
     int* _scanBuffer;
 };
     

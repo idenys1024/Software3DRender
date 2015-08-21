@@ -40,3 +40,33 @@ void RenderContext::FillShape(int yMin, int yMax)
         }
     }
 }
+
+void RenderContext::ScanConvertTriangle(Vertex minYv, Vertex midYv, Vertex maxYv, int handedness)
+{
+    ScanConvertLine(minYv,maxYv,0+handedness);
+    ScanConvertLine(minYv,midYv,1+handedness);
+    ScanConvertLine(midYv,maxYv,1+handedness);
+    
+}
+
+void RenderContext::ScanConvertLine(Vertex minY,Vertex maxY,int side)
+{
+    int yStart=(int)minY.GetY();
+    int yEnd=(int)maxY.GetY();
+    int xStart=(int)minY.GetX();
+    int xEnd=(int)maxY.GetX();
+    
+    int yDist=yEnd-yStart;
+    int xDist=xEnd-xStart;
+    
+    if(yDist<=0)
+        return;
+    
+    float xStep=(float)xDist/(float)yDist;
+    float curX=xStart;
+    for(int j=yStart;j<yEnd;j++)
+    {
+        _scanBuffer[j*2+side]=(int)curX;
+        curX+=xStep;
+    }
+}
