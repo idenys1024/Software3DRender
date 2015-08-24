@@ -6,20 +6,22 @@
 //  Copyright (c) 2015 Denys Kunytskyi. All rights reserved.
 //
 
-#include "SWRScene.h"
-#include "SWRRenderContext.h"
+#include "Scene.h"
+#include "RenderContext.h"
 
-SWRScene::SWRScene()
+using namespace SWR;
+
+Scene::Scene()
 {
     
 }
 
-SWRScene::~SWRScene()
+Scene::~Scene()
 {
     
 }
 
-void SWRScene::UpdateAndDraw(float deltatime, std::shared_ptr<SWRRenderContext> renderTarget)
+void Scene::UpdateAndDraw(float deltatime, std::shared_ptr<RenderContext> renderTarget)
 {
     int w=renderTarget->GetWidth();
     int h=renderTarget->GetHeight();

@@ -11,17 +11,20 @@
 
 #include <stdio.h>
 
+
+namespace SWR{
+
 typedef unsigned char uchar;
-enum SWRBitmapColorSpace{
-    SWRBITMAP_RGBA,
-    SWRBITMAP_ABGR
+enum BitmapColorSpace{
+    BITMAP_RGBA,
+    BITMAP_ABGR
 };
 
-class SWRBitmap
+class Bitmap
 {
 public:
-    SWRBitmap(int width, int height, SWRBitmapColorSpace colorSpace);
-    virtual ~SWRBitmap();
+    Bitmap(int width, int height, BitmapColorSpace colorSpace);
+    virtual ~Bitmap();
     void Clear(uchar shade);
     void DrawPixel(int pX,int pY,uchar a,uchar b,uchar g,uchar r);
     const uchar* const GetComponentsData() const;
@@ -32,9 +35,10 @@ protected:
     int _width;
     int _height;
     int _numOfComponents;
-    enum SWRBitmapColorSpace _colorSpace;
+    enum BitmapColorSpace _colorSpace;
     unsigned char* _components;// store pixels in abgr or rgba format
 };
-
+    
+}
 
 #endif /* defined(__Software3DRenderer__SWRBitmap__) */

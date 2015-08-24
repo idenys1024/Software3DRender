@@ -7,12 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9250E03E1B85E4670080DCBC /* SWRBitmap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9250E03A1B85CBE30080DCBC /* SWRBitmap.cpp */; };
-		9250E0441B8601F50080DCBC /* SWRRenderContext.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9250E0421B8601F50080DCBC /* SWRRenderContext.cpp */; };
-		9250E0471B8605DE0080DCBC /* SWRDisplay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9250E0451B8605DE0080DCBC /* SWRDisplay.cpp */; };
-		9250E04A1B8613690080DCBC /* SWRScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9250E0481B8613690080DCBC /* SWRScene.cpp */; };
+		9250E03E1B85E4670080DCBC /* Bitmap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9250E03A1B85CBE30080DCBC /* Bitmap.cpp */; };
+		9250E0441B8601F50080DCBC /* RenderContext.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9250E0421B8601F50080DCBC /* RenderContext.cpp */; };
+		9250E0471B8605DE0080DCBC /* Display.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9250E0451B8605DE0080DCBC /* Display.cpp */; };
+		9250E04A1B8613690080DCBC /* Scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9250E0481B8613690080DCBC /* Scene.cpp */; };
 		9250E04D1B8627E00080DCBC /* Star3DFieldScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9250E04B1B8627E00080DCBC /* Star3DFieldScene.cpp */; };
 		9250E0511B873D180080DCBC /* DisplayFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9250E04F1B873D180080DCBC /* DisplayFactory.cpp */; };
+		9250E0551B8741F50080DCBC /* FillShapeScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9250E0531B8741F50080DCBC /* FillShapeScene.cpp */; };
+		9250E0581B874A760080DCBC /* TrianglesScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9250E0561B874A760080DCBC /* TrianglesScene.cpp */; };
+		9250E05B1B875C9F0080DCBC /* Vertex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9250E0591B875C9F0080DCBC /* Vertex.cpp */; };
 		92FE32A31B381FE40048F2FB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FE32A21B381FE40048F2FB /* AppDelegate.m */; };
 		92FE32A51B381FE40048F2FB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FE32A41B381FE40048F2FB /* main.m */; };
 		92FE32A81B381FE40048F2FB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FE32A71B381FE40048F2FB /* ViewController.m */; };
@@ -33,18 +36,24 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		9250E03A1B85CBE30080DCBC /* SWRBitmap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SWRBitmap.cpp; sourceTree = "<group>"; };
-		9250E03B1B85CBE30080DCBC /* SWRBitmap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRBitmap.h; sourceTree = "<group>"; };
-		9250E0421B8601F50080DCBC /* SWRRenderContext.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SWRRenderContext.cpp; sourceTree = "<group>"; };
-		9250E0431B8601F50080DCBC /* SWRRenderContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRRenderContext.h; sourceTree = "<group>"; };
-		9250E0451B8605DE0080DCBC /* SWRDisplay.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SWRDisplay.cpp; sourceTree = "<group>"; };
-		9250E0461B8605DE0080DCBC /* SWRDisplay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRDisplay.h; sourceTree = "<group>"; };
-		9250E0481B8613690080DCBC /* SWRScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SWRScene.cpp; sourceTree = "<group>"; };
-		9250E0491B8613690080DCBC /* SWRScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRScene.h; sourceTree = "<group>"; };
+		9250E03A1B85CBE30080DCBC /* Bitmap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Bitmap.cpp; sourceTree = "<group>"; };
+		9250E03B1B85CBE30080DCBC /* Bitmap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bitmap.h; sourceTree = "<group>"; };
+		9250E0421B8601F50080DCBC /* RenderContext.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RenderContext.cpp; sourceTree = "<group>"; };
+		9250E0431B8601F50080DCBC /* RenderContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RenderContext.h; sourceTree = "<group>"; };
+		9250E0451B8605DE0080DCBC /* Display.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Display.cpp; sourceTree = "<group>"; };
+		9250E0461B8605DE0080DCBC /* Display.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Display.h; sourceTree = "<group>"; };
+		9250E0481B8613690080DCBC /* Scene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Scene.cpp; sourceTree = "<group>"; };
+		9250E0491B8613690080DCBC /* Scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scene.h; sourceTree = "<group>"; };
 		9250E04B1B8627E00080DCBC /* Star3DFieldScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Star3DFieldScene.cpp; sourceTree = "<group>"; };
 		9250E04C1B8627E00080DCBC /* Star3DFieldScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Star3DFieldScene.h; sourceTree = "<group>"; };
 		9250E04F1B873D180080DCBC /* DisplayFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DisplayFactory.cpp; sourceTree = "<group>"; };
 		9250E0501B873D180080DCBC /* DisplayFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DisplayFactory.h; sourceTree = "<group>"; };
+		9250E0531B8741F50080DCBC /* FillShapeScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FillShapeScene.cpp; sourceTree = "<group>"; };
+		9250E0541B8741F50080DCBC /* FillShapeScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FillShapeScene.h; sourceTree = "<group>"; };
+		9250E0561B874A760080DCBC /* TrianglesScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TrianglesScene.cpp; sourceTree = "<group>"; };
+		9250E0571B874A760080DCBC /* TrianglesScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrianglesScene.h; sourceTree = "<group>"; };
+		9250E0591B875C9F0080DCBC /* Vertex.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Vertex.cpp; sourceTree = "<group>"; };
+		9250E05A1B875C9F0080DCBC /* Vertex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vertex.h; sourceTree = "<group>"; };
 		92FE329C1B381FE40048F2FB /* Software3DRenderer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Software3DRenderer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		92FE32A01B381FE40048F2FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		92FE32A11B381FE40048F2FB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -83,16 +92,18 @@
 			isa = PBXGroup;
 			children = (
 				9250E04E1B8627E70080DCBC /* Scenes */,
-				9250E03A1B85CBE30080DCBC /* SWRBitmap.cpp */,
-				9250E03B1B85CBE30080DCBC /* SWRBitmap.h */,
-				9250E0421B8601F50080DCBC /* SWRRenderContext.cpp */,
-				9250E0431B8601F50080DCBC /* SWRRenderContext.h */,
-				9250E0451B8605DE0080DCBC /* SWRDisplay.cpp */,
-				9250E0461B8605DE0080DCBC /* SWRDisplay.h */,
-				9250E0481B8613690080DCBC /* SWRScene.cpp */,
-				9250E0491B8613690080DCBC /* SWRScene.h */,
+				9250E03A1B85CBE30080DCBC /* Bitmap.cpp */,
+				9250E03B1B85CBE30080DCBC /* Bitmap.h */,
+				9250E0421B8601F50080DCBC /* RenderContext.cpp */,
+				9250E0431B8601F50080DCBC /* RenderContext.h */,
+				9250E0451B8605DE0080DCBC /* Display.cpp */,
+				9250E0461B8605DE0080DCBC /* Display.h */,
+				9250E0481B8613690080DCBC /* Scene.cpp */,
+				9250E0491B8613690080DCBC /* Scene.h */,
 				9250E04F1B873D180080DCBC /* DisplayFactory.cpp */,
 				9250E0501B873D180080DCBC /* DisplayFactory.h */,
+				9250E0591B875C9F0080DCBC /* Vertex.cpp */,
+				9250E05A1B875C9F0080DCBC /* Vertex.h */,
 			);
 			path = SWR;
 			sourceTree = "<group>";
@@ -102,6 +113,10 @@
 			children = (
 				9250E04C1B8627E00080DCBC /* Star3DFieldScene.h */,
 				9250E04B1B8627E00080DCBC /* Star3DFieldScene.cpp */,
+				9250E0531B8741F50080DCBC /* FillShapeScene.cpp */,
+				9250E0541B8741F50080DCBC /* FillShapeScene.h */,
+				9250E0561B874A760080DCBC /* TrianglesScene.cpp */,
+				9250E0571B874A760080DCBC /* TrianglesScene.h */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -274,16 +289,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9250E03E1B85E4670080DCBC /* SWRBitmap.cpp in Sources */,
+				9250E03E1B85E4670080DCBC /* Bitmap.cpp in Sources */,
+				9250E0551B8741F50080DCBC /* FillShapeScene.cpp in Sources */,
 				92FE32A81B381FE40048F2FB /* ViewController.m in Sources */,
 				92FE32A51B381FE40048F2FB /* main.m in Sources */,
 				92FE32C41B3823700048F2FB /* CanvasView.mm in Sources */,
 				92FE32A31B381FE40048F2FB /* AppDelegate.m in Sources */,
+				9250E0581B874A760080DCBC /* TrianglesScene.cpp in Sources */,
 				9250E0511B873D180080DCBC /* DisplayFactory.cpp in Sources */,
-				9250E04A1B8613690080DCBC /* SWRScene.cpp in Sources */,
+				9250E04A1B8613690080DCBC /* Scene.cpp in Sources */,
 				9250E04D1B8627E00080DCBC /* Star3DFieldScene.cpp in Sources */,
-				9250E0441B8601F50080DCBC /* SWRRenderContext.cpp in Sources */,
-				9250E0471B8605DE0080DCBC /* SWRDisplay.cpp in Sources */,
+				9250E0441B8601F50080DCBC /* RenderContext.cpp in Sources */,
+				9250E0471B8605DE0080DCBC /* Display.cpp in Sources */,
+				9250E05B1B875C9F0080DCBC /* Vertex.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

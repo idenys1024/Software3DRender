@@ -11,10 +11,10 @@
 
 
 @interface CanvasView()
-@property(nonatomic) std::shared_ptr<SWRDisplay> display;
+@property(nonatomic) std::shared_ptr<SWR::Display> display;
 
 @end
-
+ 
 @implementation CanvasView
 
 - (instancetype) initWithCoder:(NSCoder *)coder
@@ -22,7 +22,7 @@
     self=[super initWithCoder:coder];
     if(self)
     {
-        _display=DisplayFactory::GetConfiguredDisplay((int)self.frame.size.width, (int)self.frame.size.height);
+        _display=SWR::DisplayFactory::GetConfiguredDisplay((int)self.frame.size.width, (int)self.frame.size.height);
        
         [[NSNotificationCenter defaultCenter]	addObserver:self
                                                  selector:@selector(onFrameSizeChange:)
