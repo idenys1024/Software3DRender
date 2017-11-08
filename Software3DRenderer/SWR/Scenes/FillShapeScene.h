@@ -16,7 +16,7 @@ class FillShapeScene: public SWR::Scene
 public:
     //FillShapeScene();
     //~FillShapeScene();
-    virtual void UpdateAndDraw(float deltatime, std::shared_ptr<SWR::RenderContext> renderTarget);
+    virtual void UpdateAndDraw(float deltatime, std::shared_ptr<SWR::RenderContext> renderTarget) override;
 protected:
     
 };

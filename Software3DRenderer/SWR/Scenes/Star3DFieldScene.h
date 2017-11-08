@@ -18,7 +18,7 @@ class Star3DFieldScene: public SWR::Scene
 public:
     Star3DFieldScene(int numOfStars, float speed, float spread, float acceleration=0.0f);
     ~Star3DFieldScene();
-    virtual void UpdateAndDraw(float deltatime, std::shared_ptr<SWR::RenderContext> renderTarget);
+    virtual void UpdateAndDraw(float deltatime, std::shared_ptr<SWR::RenderContext> renderTarget) override;
 protected:
     struct StarPosition
     {

@@ -14,7 +14,7 @@
 class TrianglesScene: public SWR::Scene
 {
 public:
-    virtual void UpdateAndDraw(float deltatime, std::shared_ptr<SWR::RenderContext> renderTarget);
+    virtual void UpdateAndDraw(float deltatime, std::shared_ptr<SWR::RenderContext> renderTarget) override;
 protected:
     
 };
