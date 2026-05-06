@@ -31,7 +31,7 @@ void Bitmap::Clear(uchar shade)
 
 void Bitmap::DrawPixel(int pX,int pY,uchar a,uchar b,uchar g,uchar r)
 {
-    if(pX>=_width||pY>=_height)
+    if(pX<0||pY<0||pX>=_width||pY>=_height)
         return;
     
     int index=(pX+pY*_width)*_numOfComponents;
