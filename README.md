@@ -6,7 +6,7 @@ Simulate a GPU 3D magic by hands)
 I'm developing this project for learning purposes and better understanding how modern 3D APIs looks like inside.
 
 The SWR core is platform-independent C++. The application shell is built on
-SDL3 and CMake. Builds are verified on Windows and Linux.
+SDL3 and CMake. Builds are verified on Windows, Linux, and macOS.
 
 ## Build & run
 
@@ -40,6 +40,22 @@ cmake --build build --config Release
 build\Release\Software3DRenderer.exe
 ctest --test-dir build -C Release --output-on-failure
 ```
+
+### macOS
+
+Requires Xcode Command Line Tools (`xcode-select --install`).
+
+```sh
+cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
+cmake --build build
+./build/Software3DRenderer.app/Contents/MacOS/Software3DRenderer
+ctest --test-dir build --output-on-failure
+```
+
+The shell is built as a `MACOSX_BUNDLE`, so the binary lives inside the
+`.app`. CMake pins `CMAKE_OSX_DEPLOYMENT_TARGET` to `10.15` if you do
+not override it; pass `-DCMAKE_OSX_DEPLOYMENT_TARGET=...` to change it,
+or `-DCMAKE_OSX_ARCHITECTURES="arm64;x86_64"` for a universal binary.
 
 ## Project layout
 

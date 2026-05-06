@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project overview
 
-Software3DRender is a learning project that simulates a GPU 3D pipeline by hand on the CPU. The renderer core (`SWR` namespace) is plain C++ and platform-independent. The application shell is SDL3 + CMake; builds are verified on Windows and Linux.
+Software3DRender is a learning project that simulates a GPU 3D pipeline by hand on the CPU. The renderer core (`SWR` namespace) is plain C++ and platform-independent. The application shell is SDL3 + CMake; builds are verified on Windows, Linux, and macOS.
 
 ## Build, run, test
 
@@ -23,6 +23,12 @@ cmake --build build --config Release
 build\Release\Software3DRenderer.exe
 ctest --test-dir build -C Release --output-on-failure
 
+# macOS (Ninja, requires Xcode Command Line Tools)
+cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
+cmake --build build
+./build/Software3DRenderer.app/Contents/MacOS/Software3DRenderer
+ctest --test-dir build --output-on-failure
+
 # Run a single Catch2 test by name (Linux)
 ./build/swr_tests "RenderContext FillShape rasterizes inside scan-buffer rows"
 
@@ -31,6 +37,8 @@ ctest --test-dir build -C Release --output-on-failure
 ```
 
 Note: do **not** define `SDL_MAIN_USE_CALLBACKS` (even as `0`) in `app/main.cpp` — SDL checks `#ifdef`, not the value, so any definition opts in to callback mode and produces a duplicate `SDL_main` link error. Just `#include <SDL3/SDL_main.h>` and write a normal `int main`.
+
+macOS note: `Software3DRenderer` is built with `MACOSX_BUNDLE`, so the binary lives at `build/Software3DRenderer.app/Contents/MacOS/Software3DRenderer`. The root CMakeLists pins `CMAKE_OSX_DEPLOYMENT_TARGET` to `10.15` if it isn't already set, before SDL3's FetchContent runs, so the renderer and SDL3 agree on the SDK.
 
 The CMake project produces three artifacts: the `swr` static library (the renderer core), the `Software3DRenderer` executable (SDL3 shell), and `swr_tests` (Catch2 binary registered with CTest).
 

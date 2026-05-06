@@ -5,6 +5,13 @@ set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
+# macOS: pin a deployment target before SDL3 / FetchContent runs so the
+# vendored SDL3 build, the renderer, and the shell all agree on the SDK.
+if(APPLE AND NOT CMAKE_OSX_DEPLOYMENT_TARGET)
+    set(CMAKE_OSX_DEPLOYMENT_TARGET "10.15"
+        CACHE STRING "Minimum macOS deployment target" FORCE)
+endif()
+
 include(FetchContent)
 
 FetchContent_Declare(
@@ -36,7 +43,7 @@ target_include_directories(swr PUBLIC
     ${SWR_DIR}/Scenes
 )
 
-add_executable(Software3DRenderer WIN32 app/main.cpp)
+add_executable(Software3DRenderer WIN32 MACOSX_BUNDLE app/main.cpp)
 target_link_libraries(Software3DRenderer PRIVATE swr SDL3::SDL3-static)
 
 enable_testing()

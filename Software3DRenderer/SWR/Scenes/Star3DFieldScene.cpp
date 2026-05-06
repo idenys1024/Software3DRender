@@ -46,8 +46,8 @@ void Star3DFieldScene::UpdateAndDraw(float deltatime, std::shared_ptr<SWR::Rende
     float halfWidth=renderTarget->GetWidth()*0.5f;
     float halfHeight=renderTarget->GetHeight()*0.5f;
     float FOVinDegree=90.0f;
-    float tanHalfFOV=tanf((FOVinDegree*0.5)*(M_PI/180.0));
-    
+    float tanHalfFOV=tanf((FOVinDegree*0.5f)*(float)(M_PI/180.0));
+
     int w=renderTarget->GetWidth();
     int h=renderTarget->GetHeight();
     _speed+=deltatime*_acceleration;
@@ -57,10 +57,11 @@ void Star3DFieldScene::UpdateAndDraw(float deltatime, std::shared_ptr<SWR::Rende
         cs.z=cs.z-deltatime*_speed;
         if(cs.bright<255)
         {
-            if(cs.bright+deltatime*1000>255)
+            float nextBright=(float)cs.bright+deltatime*1000.0f;
+            if(nextBright>255.0f)
                 cs.bright=255;
             else
-                cs.bright+=deltatime*1000;
+                cs.bright=(unsigned char)nextBright;
         }
         if(cs.z<0)
         {
