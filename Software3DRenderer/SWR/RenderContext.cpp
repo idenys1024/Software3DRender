@@ -21,7 +21,7 @@ RenderContext::~RenderContext()
 
 void RenderContext::DrawScanBuffer(int yCoord, int xMin, int xMax)
 {
-    if(yCoord>=_height)
+    if(yCoord<0||yCoord>=_height)
         return;
     
     _scanBuffer[yCoord*2  ]=xMin;
@@ -43,10 +43,9 @@ void RenderContext::FillShape(int yMin, int yMax)
 
 void RenderContext::ScanConvertTriangle(Vertex minYv, Vertex midYv, Vertex maxYv, int handedness)
 {
-    ScanConvertLine(minYv,maxYv,0+handedness);
-    ScanConvertLine(minYv,midYv,1+handedness);
-    ScanConvertLine(midYv,maxYv,1+handedness);
-    
+    ScanConvertLine(minYv,maxYv,handedness);
+    ScanConvertLine(minYv,midYv,1-handedness);
+    ScanConvertLine(midYv,maxYv,1-handedness);
 }
 
 void RenderContext::ScanConvertLine(Vertex minY,Vertex maxY,int side)
