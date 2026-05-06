@@ -5,33 +5,49 @@ Software 3D Renderer.
 Simulate a GPU 3D magic by hands)
 I'm developing this project for learning purposes and better understanding how modern 3D APIs looks like inside.
 
-SWR core is platform independent (C++), but you still need OSX and Xcode installed to compile and run it for now.
+The SWR core is platform-independent C++. The application shell is built on
+SDL3 and CMake, targeting Windows.
 
-## Build & run
+## Build & run (Windows)
 
-Open `Software3DRenderer.xcodeproj` in Xcode and run the `Software3DRenderer` scheme, or from the command line:
+Requirements: CMake ≥ 3.21, a C++14 toolchain (Visual Studio 2022 or
+clang-cl), git. SDL3 and Catch2 are pulled in automatically by CMake's
+`FetchContent` on first configure.
 
 ```sh
-# Build the macOS app
-xcodebuild -project Software3DRenderer.xcodeproj -scheme Software3DRenderer build
+# Configure
+cmake -S . -B build -G "Visual Studio 17 2022" -A x64
 
-# Run the XCTest suite
-xcodebuild test -project Software3DRenderer.xcodeproj -scheme Software3DRenderer -destination 'platform=macOS'
+# Build app + tests
+cmake --build build --config Release
+
+# Run the renderer
+build\Release\Software3DRenderer.exe
+
+# Run the test suite
+ctest --test-dir build -C Release --output-on-failure
 ```
 
 ## Project layout
 
-- `Software3DRenderer/SWR/` — platform-independent C++ renderer core (the `SWR` namespace).
+- `Software3DRenderer/SWR/` — platform-independent C++ renderer core
+  (`SWR` namespace).
   - `Bitmap` — raw RGBA/ABGR pixel buffer.
-  - `RenderContext` — `Bitmap` + scan buffer used for triangle rasterization (`DrawScanBuffer`, `ScanConvertTriangle`, `FillShape`).
-  - `Display` — owns the frame buffer and the active `Scene`; entry point for each frame via `DoDrawFrame(deltaTime)`.
-  - `DisplayFactory` — single place where the active scene is selected (swap by editing the `SetScene(...)` lines).
-  - `Scene` + `Scenes/` — per-frame `UpdateAndDraw` hook. Bundled scenes: `Star3DFieldScene`, `FillShapeScene`, `TrianglesScene`.
-- `Software3DRenderer/` (root) — Cocoa shell. `CanvasView.mm` holds the `SWR::Display` and blits its RGBA buffer to the view; `ViewController.m` drives frames with `CVDisplayLink`.
-- `Software3DRendererTests/` — XCTest bundle (Objective-C++) covering `Bitmap` and `RenderContext`.
+  - `RenderContext` — `Bitmap` + scan buffer used for triangle rasterization
+    (`DrawScanBuffer`, `ScanConvertTriangle`, `FillShape`).
+  - `Display` — owns the frame buffer and the active `Scene`; entry point
+    for each frame via `DoDrawFrame(deltaTime)`.
+  - `DisplayFactory` — single place where the active scene is selected
+    (swap by editing the `SetScene(...)` lines).
+  - `Scene` + `Scenes/` — per-frame `UpdateAndDraw` hook. Bundled scenes:
+    `Star3DFieldScene`, `FillShapeScene`, `TrianglesScene`.
+- `app/main.cpp` — SDL3 platform shell: opens a resizable window, drives
+  the frame loop, blits the RGBA buffer via a streaming `SDL_Texture`.
+- `tests/swr_tests.cpp` — Catch2 tests for `Bitmap` and `RenderContext`.
 
 ## Switching scenes
 
-Edit `Software3DRenderer/SWR/DisplayFactory.cpp` and uncomment the `SetScene(...)` line for the scene you want to run.
+Edit `Software3DRenderer/SWR/DisplayFactory.cpp` and uncomment the
+`SetScene(...)` line for the scene you want to run.
 
 Have fun!
