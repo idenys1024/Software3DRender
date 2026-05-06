@@ -6,25 +6,38 @@ Simulate a GPU 3D magic by hands)
 I'm developing this project for learning purposes and better understanding how modern 3D APIs looks like inside.
 
 The SWR core is platform-independent C++. The application shell is built on
-SDL3 and CMake, targeting Windows.
+SDL3 and CMake. Builds are verified on Windows and Linux.
 
-## Build & run (Windows)
+## Build & run
 
-Requirements: CMake ≥ 3.21, a C++14 toolchain (Visual Studio 2022 or
-clang-cl), git. SDL3 and Catch2 are pulled in automatically by CMake's
-`FetchContent` on first configure.
+Requirements: CMake ≥ 3.21, a C++14 toolchain, git. SDL3 and Catch2 are
+pulled in automatically by CMake's `FetchContent` on first configure.
+
+### Linux
+
+On Debian/Ubuntu, install the X11 development headers SDL3 builds against
+(or the equivalent on your distro):
 
 ```sh
-# Configure
+sudo apt install build-essential cmake ninja-build \
+                 libx11-dev libxext-dev
+```
+
+Then:
+
+```sh
+cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
+cmake --build build
+./build/Software3DRenderer
+ctest --test-dir build --output-on-failure
+```
+
+### Windows
+
+```sh
 cmake -S . -B build -G "Visual Studio 17 2022" -A x64
-
-# Build app + tests
 cmake --build build --config Release
-
-# Run the renderer
 build\Release\Software3DRenderer.exe
-
-# Run the test suite
 ctest --test-dir build -C Release --output-on-failure
 ```
 
