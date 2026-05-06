@@ -4,31 +4,33 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project overview
 
-Software3DRender is a learning project that simulates a GPU 3D pipeline by hand on the CPU. The renderer core (`SWR` namespace) is plain C++ and platform-independent. The application shell is SDL3 + CMake, currently targeting Windows.
+Software3DRender is a learning project that simulates a GPU 3D pipeline by hand on the CPU. The renderer core (`SWR` namespace) is plain C++ and platform-independent. The application shell is SDL3 + CMake; builds are verified on Windows and Linux.
 
 ## Build, run, test
 
-Requirements: CMake ≥ 3.21, a C++14 toolchain, git. SDL3 and Catch2 are vendored via `FetchContent` and downloaded on first configure.
+Requirements: CMake ≥ 3.21, a C++14 toolchain, git. SDL3 and Catch2 are vendored via `FetchContent` and downloaded on first configure. On Linux SDL3 needs X11 dev headers (`libx11-dev libxext-dev` on Debian/Ubuntu).
 
 ```sh
-# Configure (Windows / Visual Studio)
+# Linux (Ninja)
+cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
+cmake --build build
+./build/Software3DRenderer
+ctest --test-dir build --output-on-failure
+
+# Windows (Visual Studio)
 cmake -S . -B build -G "Visual Studio 17 2022" -A x64
-
-# Build
 cmake --build build --config Release
-
-# Run the app (resizable window, currently shows TrianglesScene)
 build\Release\Software3DRenderer.exe
-
-# Run the full test suite
 ctest --test-dir build -C Release --output-on-failure
 
-# Run a single Catch2 test by name
-build\Release\swr_tests.exe "RenderContext FillShape rasterizes inside scan-buffer rows"
+# Run a single Catch2 test by name (Linux)
+./build/swr_tests "RenderContext FillShape rasterizes inside scan-buffer rows"
 
 # Or by tag
-build\Release\swr_tests.exe "[Bitmap]"
+./build/swr_tests "[Bitmap]"
 ```
+
+Note: do **not** define `SDL_MAIN_USE_CALLBACKS` (even as `0`) in `app/main.cpp` — SDL checks `#ifdef`, not the value, so any definition opts in to callback mode and produces a duplicate `SDL_main` link error. Just `#include <SDL3/SDL_main.h>` and write a normal `int main`.
 
 The CMake project produces three artifacts: the `swr` static library (the renderer core), the `Software3DRenderer` executable (SDL3 shell), and `swr_tests` (Catch2 binary registered with CTest).
 
@@ -47,7 +49,7 @@ The pipeline is layered as **Bitmap → RenderContext → Display → Scene**, w
 
 Platform shell (`app/main.cpp`):
 
-- One `main` that calls `SDL_Init`, creates a resizable `SDL_Window` + `SDL_Renderer` + a streaming `SDL_Texture` (`SDL_PIXELFORMAT_RGBA32`).
+- One `main` that calls `SDL_Init`, creates a resizable `SDL_Window` + `SDL_Renderer` + a streaming `SDL_Texture` (`SDL_PIXELFORMAT_RGBA32`). Includes `<SDL3/SDL_main.h>` for the platform entry-point shim — see the build note above about not defining `SDL_MAIN_USE_CALLBACKS`.
 - Builds the renderer via `SWR::DisplayFactory::GetConfiguredDisplay` and stores it in a `std::shared_ptr<SWR::Display>`.
 - Each iteration: pump SDL events, compute `deltaTime` from `SDL_GetTicks`, call `Display::DoDrawFrame`, push the bitmap into the texture with `SDL_UpdateTexture`, then `SDL_RenderTexture` + `SDL_RenderPresent`.
 - On `SDL_EVENT_WINDOW_PIXEL_SIZE_CHANGED` it calls `Display::Resize` and recreates the texture; on `SDL_EVENT_QUIT` it tears everything down in reverse.
