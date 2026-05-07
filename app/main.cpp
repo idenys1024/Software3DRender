@@ -75,6 +75,20 @@ int main(int argc, char* argv[])
                     texture = CreateFrameTexture(renderer, width, height);
                     break;
                 }
+                case SDL_EVENT_MOUSE_BUTTON_DOWN: {
+                    if (e.button.button == SDL_BUTTON_LEFT) {
+                        int winW = 0, winH = 0;
+                        SDL_GetWindowSize(window, &winW, &winH);
+                        int bx = (winW > 0)
+                            ? static_cast<int>(e.button.x * width  / winW)
+                            : static_cast<int>(e.button.x);
+                        int by = (winH > 0)
+                            ? static_cast<int>(e.button.y * height / winH)
+                            : static_cast<int>(e.button.y);
+                        display->HandleMouseClick(bx, by);
+                    }
+                    break;
+                }
                 default:
                     break;
             }

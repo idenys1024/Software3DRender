@@ -37,10 +37,13 @@ add_library(swr STATIC
     ${SWR_DIR}/Scenes/Star3DFieldScene.cpp
     ${SWR_DIR}/Scenes/FillShapeScene.cpp
     ${SWR_DIR}/Scenes/TrianglesScene.cpp
+    ${SWR_DIR}/UI/PixelFont.cpp
+    ${SWR_DIR}/UI/SceneSelectorOverlay.cpp
 )
 target_include_directories(swr PUBLIC
     ${SWR_DIR}
     ${SWR_DIR}/Scenes
+    ${SWR_DIR}/UI
 )
 
 add_executable(Software3DRenderer WIN32 MACOSX_BUNDLE app/main.cpp)

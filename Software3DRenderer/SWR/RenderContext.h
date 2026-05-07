@@ -22,6 +22,7 @@ public:
     virtual ~RenderContext();
     void DrawScanBuffer(int yCoord, int xMin, int xMax);
     void FillShape(int yMin, int yMax);
+    void FillRect(int x, int y, int w, int h, uchar r, uchar g, uchar b, uchar a);
     void ScanConvertTriangle(Vertex minYv, Vertex midYv, Vertex maxYv, int side);
 protected:
     void ScanConvertLine(Vertex minY,Vertex maxY,int side);

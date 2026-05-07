@@ -6,7 +6,11 @@
 #include "Display.h"
 #include "DisplayFactory.h"
 #include "FillShapeScene.h"
+#include "PixelFont.h"
 #include "RenderContext.h"
+#include "SceneSelectorOverlay.h"
+#include "Star3DFieldScene.h"
+#include "TrianglesScene.h"
 #include "Vertex.h"
 
 using SWR::Bitmap;
@@ -333,4 +337,165 @@ TEST_CASE("DisplayFactory returns a configured display",
 
     d->DoDrawFrame(0.016f);
     REQUIRE(d->GetDisplayRGBAData() != nullptr);
+}
+
+TEST_CASE("PixelFont DrawString writes pixels inside the glyph box",
+          "[PixelFont]")
+{
+    using SWR::UI::DrawString;
+    using SWR::UI::MeasureString;
+
+    constexpr int w = 64;
+    constexpr int h = 32;
+    RenderContext rc(w, h);
+    rc.Clear(0);
+
+    DrawString(rc, 2, 2, "A", 200, 200, 200, 1);
+
+    int totalLit = 0;
+    for (int j = 0; j < h; ++j)
+        for (int i = 0; i < w; ++i)
+            if (AlphaByteAt(rc.GetComponentsData(), i, j, w) != 0)
+                ++totalLit;
+    REQUIRE(totalLit > 0);
+
+    // Anything outside a 5x7 box at (2,2) must be untouched.
+    for (int j = 0; j < h; ++j) {
+        for (int i = 0; i < w; ++i) {
+            bool insideGlyph = (i >= 2 && i < 2 + 5 && j >= 2 && j < 2 + 7);
+            if (!insideGlyph)
+                REQUIRE(AlphaByteAt(rc.GetComponentsData(), i, j, w) == 0);
+        }
+    }
+
+    REQUIRE(MeasureString("A", 1)  == 5);
+    REQUIRE(MeasureString("AB", 1) == 11); // 5 + 1 + 5
+    REQUIRE(MeasureString("",  2)  == 0);
+    REQUIRE(MeasureString("AB", 2) == 22);
+}
+
+TEST_CASE("SceneSelectorOverlay HitTest classifies button rects",
+          "[SceneSelector]")
+{
+    using SWR::UI::SceneSelectorOverlay;
+    constexpr int w = 600;
+    constexpr int h = 400;
+    const char* name = "STARFIELD";
+
+    RenderContext rc(w, h);
+    rc.Clear(0);
+
+    SceneSelectorOverlay overlay;
+    overlay.Draw(rc, name);
+
+    auto L = overlay.LeftButton();
+    auto R = overlay.RightButton();
+
+    REQUIRE(L.w > 0); REQUIRE(L.h > 0);
+    REQUIRE(R.w > 0); REQUIRE(R.h > 0);
+    REQUIRE(L.x + L.w < R.x);
+
+    int leftCx  = L.x + L.w / 2;
+    int leftCy  = L.y + L.h / 2;
+    int rightCx = R.x + R.w / 2;
+    int rightCy = R.y + R.h / 2;
+
+    REQUIRE(overlay.HitTest(leftCx, leftCy)  == -1);
+    REQUIRE(overlay.HitTest(rightCx, rightCy) == +1);
+    REQUIRE(overlay.HitTest(0, 0) == 0);
+    REQUIRE(overlay.HitTest(w / 2, h / 2) == 0);
+
+    REQUIRE(SceneSelectorOverlay::HitTestFor(w, h, name, leftCx,  leftCy)  == -1);
+    REQUIRE(SceneSelectorOverlay::HitTestFor(w, h, name, rightCx, rightCy) == +1);
+    REQUIRE(SceneSelectorOverlay::HitTestFor(w, h, name, 0, 0) == 0);
+}
+
+TEST_CASE("Display cycles through registered scenes",
+          "[Display]")
+{
+    constexpr int w = 800;
+    constexpr int h = 400;
+    Display d(w, h);
+
+    d.AddScene(std::make_shared<FillShapeScene>());
+    d.AddScene(std::make_shared<TrianglesScene>());
+    d.AddScene(std::make_shared<FillShapeScene>());
+
+    REQUIRE(d.GetSceneCount() == 3);
+    REQUIRE(d.GetCurrentSceneIndex() == 0);
+
+    d.NextScene();
+    REQUIRE(d.GetCurrentSceneIndex() == 1);
+    d.NextScene();
+    REQUIRE(d.GetCurrentSceneIndex() == 2);
+    d.NextScene();
+    REQUIRE(d.GetCurrentSceneIndex() == 0); // wraps
+
+    d.PrevScene();
+    REQUIRE(d.GetCurrentSceneIndex() == 2); // wraps
+    d.PrevScene();
+    REQUIRE(d.GetCurrentSceneIndex() == 1);
+}
+
+TEST_CASE("Display HandleMouseClick advances scene only on overlay buttons",
+          "[Display]")
+{
+    using SWR::UI::SceneSelectorOverlay;
+    constexpr int w = 800;
+    constexpr int h = 400;
+    Display d(w, h);
+
+    auto a = std::make_shared<FillShapeScene>();
+    auto b = std::make_shared<TrianglesScene>();
+    d.AddScene(a);
+    d.AddScene(b);
+
+    REQUIRE(d.GetCurrentSceneIndex() == 0);
+
+    d.DoDrawFrame(0.016f); // overlay lays itself out using current scene name
+
+    // Click somewhere clearly outside the bar.
+    d.HandleMouseClick(0, h - 1);
+    REQUIRE(d.GetCurrentSceneIndex() == 0);
+
+    // Use HitTestFor to find a guaranteed right-button coordinate for the
+    // currently displayed scene name.
+    const char* nameA = a->GetName();
+    SceneSelectorOverlay tmp;
+    {
+        RenderContext probe(w, h);
+        tmp.Draw(probe, nameA);
+    }
+    auto R = tmp.RightButton();
+    auto L = tmp.LeftButton();
+
+    d.HandleMouseClick(R.x + R.w / 2, R.y + R.h / 2);
+    REQUIRE(d.GetCurrentSceneIndex() == 1);
+
+    // Re-draw to relayout for new scene name (TrianglesScene).
+    d.DoDrawFrame(0.016f);
+    {
+        RenderContext probe(w, h);
+        tmp.Draw(probe, b->GetName());
+    }
+    L = tmp.LeftButton();
+    d.HandleMouseClick(L.x + L.w / 2, L.y + L.h / 2);
+    REQUIRE(d.GetCurrentSceneIndex() == 0);
+}
+
+TEST_CASE("Display SetScene preserves single-scene behavior (no overlay)",
+          "[Display]")
+{
+    constexpr int w = 100;
+    constexpr int h = 100;
+    Display d(w, h);
+
+    d.SetScene(std::make_shared<FillShapeScene>());
+    REQUIRE(d.GetSceneCount() == 1);
+
+    d.DoDrawFrame(0.016f);
+    // FillShapeScene clears to 28; the overlay is suppressed when only one
+    // scene is registered, so the top of the bitmap stays at the cleared value.
+    REQUIRE(AlphaByteAt(d.GetDisplayRGBAData(), 0, 0, w) == 28);
+    REQUIRE(AlphaByteAt(d.GetDisplayRGBAData(), w / 2, 8, w) == 28);
 }

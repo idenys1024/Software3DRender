@@ -1,0 +1,140 @@
+#include "PixelFont.h"
+
+#include <cstdint>
+#include <cstring>
+
+namespace SWR {
+namespace UI {
+
+namespace {
+
+constexpr int kFirstChar = 32;
+constexpr int kLastChar  = 95;
+constexpr int kNumGlyphs = kLastChar - kFirstChar + 1;
+
+const uint8_t kGlyphs[kNumGlyphs][kFontGlyphH] = {
+    {0,0,0,0,0,0,0},                          // ' '  (32)
+    {0,0,0,0,0,0,0},                          // '!'
+    {0,0,0,0,0,0,0},                          // '"'
+    {0,0,0,0,0,0,0},                          // '#'
+    {0,0,0,0,0,0,0},                          // '$'
+    {0,0,0,0,0,0,0},                          // '%'
+    {0,0,0,0,0,0,0},                          // '&'
+    {0,0,0,0,0,0,0},                          // '\''
+    {0,0,0,0,0,0,0},                          // '('
+    {0,0,0,0,0,0,0},                          // ')'
+    {0,0,0,0,0,0,0},                          // '*'
+    {0,0,0,0,0,0,0},                          // '+'
+    {0,0,0,0,0,0,0},                          // ','
+    {0,0,0,0,0,0,0},                          // '-'
+    {0,0,0,0,0,0,0},                          // '.'
+    {0,0,0,0,0,0,0},                          // '/'
+    {0x0E,0x11,0x13,0x15,0x19,0x11,0x0E},     // '0'  (48)
+    {0x04,0x0C,0x04,0x04,0x04,0x04,0x0E},     // '1'
+    {0x0E,0x11,0x01,0x02,0x04,0x08,0x1F},     // '2'
+    {0x0E,0x11,0x01,0x06,0x01,0x11,0x0E},     // '3'
+    {0x02,0x06,0x0A,0x12,0x1F,0x02,0x02},     // '4'
+    {0x1F,0x10,0x1E,0x01,0x01,0x11,0x0E},     // '5'
+    {0x0E,0x10,0x10,0x1E,0x11,0x11,0x0E},     // '6'
+    {0x1F,0x01,0x02,0x04,0x08,0x08,0x08},     // '7'
+    {0x0E,0x11,0x11,0x0E,0x11,0x11,0x0E},     // '8'
+    {0x0E,0x11,0x11,0x0F,0x01,0x01,0x0E},     // '9'
+    {0,0,0,0,0,0,0},                          // ':'
+    {0,0,0,0,0,0,0},                          // ';'
+    {0x01,0x02,0x04,0x08,0x04,0x02,0x01},     // '<'  (60)
+    {0,0,0,0,0,0,0},                          // '='
+    {0x10,0x08,0x04,0x02,0x04,0x08,0x10},     // '>'  (62)
+    {0,0,0,0,0,0,0},                          // '?'
+    {0,0,0,0,0,0,0},                          // '@'
+    {0x0E,0x11,0x11,0x1F,0x11,0x11,0x11},     // 'A'  (65)
+    {0x1E,0x11,0x11,0x1E,0x11,0x11,0x1E},     // 'B'
+    {0x0E,0x11,0x10,0x10,0x10,0x11,0x0E},     // 'C'
+    {0x1E,0x11,0x11,0x11,0x11,0x11,0x1E},     // 'D'
+    {0x1F,0x10,0x10,0x1E,0x10,0x10,0x1F},     // 'E'
+    {0x1F,0x10,0x10,0x1E,0x10,0x10,0x10},     // 'F'
+    {0x0E,0x11,0x10,0x17,0x11,0x11,0x0E},     // 'G'
+    {0x11,0x11,0x11,0x1F,0x11,0x11,0x11},     // 'H'
+    {0x1F,0x04,0x04,0x04,0x04,0x04,0x1F},     // 'I'
+    {0x1F,0x01,0x01,0x01,0x01,0x11,0x0E},     // 'J'
+    {0x11,0x12,0x14,0x18,0x14,0x12,0x11},     // 'K'
+    {0x10,0x10,0x10,0x10,0x10,0x10,0x1F},     // 'L'
+    {0x11,0x1B,0x15,0x11,0x11,0x11,0x11},     // 'M'
+    {0x11,0x19,0x15,0x13,0x11,0x11,0x11},     // 'N'
+    {0x0E,0x11,0x11,0x11,0x11,0x11,0x0E},     // 'O'
+    {0x1E,0x11,0x11,0x1E,0x10,0x10,0x10},     // 'P'
+    {0x0E,0x11,0x11,0x11,0x15,0x12,0x0D},     // 'Q'
+    {0x1E,0x11,0x11,0x1E,0x14,0x12,0x11},     // 'R'
+    {0x0F,0x10,0x10,0x0E,0x01,0x01,0x1E},     // 'S'
+    {0x1F,0x04,0x04,0x04,0x04,0x04,0x04},     // 'T'
+    {0x11,0x11,0x11,0x11,0x11,0x11,0x0E},     // 'U'
+    {0x11,0x11,0x11,0x11,0x11,0x0A,0x04},     // 'V'
+    {0x11,0x11,0x11,0x11,0x15,0x1B,0x11},     // 'W'
+    {0x11,0x11,0x0A,0x04,0x0A,0x11,0x11},     // 'X'
+    {0x11,0x11,0x11,0x0A,0x04,0x04,0x04},     // 'Y'
+    {0x1F,0x01,0x02,0x04,0x08,0x10,0x1F},     // 'Z'
+    {0,0,0,0,0,0,0},                          // '['
+    {0,0,0,0,0,0,0},                          // '\\'
+    {0,0,0,0,0,0,0},                          // ']'
+    {0,0,0,0,0,0,0},                          // '^'
+    {0,0,0,0,0,0,0},                          // '_'
+};
+
+const uint8_t* GlyphFor(char ch)
+{
+    if (ch >= 'a' && ch <= 'z')
+        ch = static_cast<char>(ch - 'a' + 'A');
+    if (ch < kFirstChar || ch > kLastChar)
+        return kGlyphs[0];
+    return kGlyphs[ch - kFirstChar];
+}
+
+void DrawGlyph(RenderContext& rc,
+               int x, int y,
+               const uint8_t* rows,
+               uchar r, uchar g, uchar b,
+               int scale)
+{
+    for (int row = 0; row < kFontGlyphH; ++row) {
+        uint8_t bits = rows[row];
+        for (int col = 0; col < kFontGlyphW; ++col) {
+            // bit 4 (0x10) = leftmost pixel.
+            if ((bits >> (kFontGlyphW - 1 - col)) & 1) {
+                int px0 = x + col * scale;
+                int py0 = y + row * scale;
+                for (int dy = 0; dy < scale; ++dy)
+                    for (int dx = 0; dx < scale; ++dx)
+                        rc.DrawPixel(px0 + dx, py0 + dy, 255, b, g, r);
+            }
+        }
+    }
+}
+
+}  // namespace
+
+int MeasureString(const char* text, int scale)
+{
+    if (!text || scale <= 0)
+        return 0;
+    int len = static_cast<int>(std::strlen(text));
+    if (len <= 0)
+        return 0;
+    return (len * kFontAdvance - 1) * scale;
+}
+
+void DrawString(RenderContext& rc,
+                int x, int y,
+                const char* text,
+                uchar r, uchar g, uchar b,
+                int scale)
+{
+    if (!text || scale <= 0)
+        return;
+    int cursorX = x;
+    for (const char* p = text; *p; ++p) {
+        DrawGlyph(rc, cursorX, y, GlyphFor(*p), r, g, b, scale);
+        cursorX += kFontAdvance * scale;
+    }
+}
+
+}
+}
