@@ -2,8 +2,8 @@
 //  SWRBitmap.cpp
 //  Software3DRenderer
 //
-//  Created by Denys Kunytskyi on 8/20/15.
-//  Copyright (c) 2015 Denys Kunytskyi. All rights reserved.
+//  Created by Denis Kunitski on 8/20/15.
+//  Copyright (c) 2015 Denis Kunitski. All rights reserved.
 //
 
 #include "Bitmap.h"
