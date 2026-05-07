@@ -63,20 +63,35 @@ or `-DCMAKE_OSX_ARCHITECTURES="arm64;x86_64"` for a universal binary.
   (`SWR` namespace).
   - `Bitmap` — raw RGBA/ABGR pixel buffer.
   - `RenderContext` — `Bitmap` + scan buffer used for triangle rasterization
-    (`DrawScanBuffer`, `ScanConvertTriangle`, `FillShape`).
-  - `Display` — owns the frame buffer and the active `Scene`; entry point
-    for each frame via `DoDrawFrame(deltaTime)`.
-  - `DisplayFactory` — single place where the active scene is selected
-    (swap by editing the `SetScene(...)` lines).
-  - `Scene` + `Scenes/` — per-frame `UpdateAndDraw` hook. Bundled scenes:
+    (`DrawScanBuffer`, `ScanConvertTriangle`, `FillShape`, `FillRect`).
+  - `Display` — owns the frame buffer and a list of `Scene`s with an active
+    index; entry point for each frame via `DoDrawFrame(deltaTime)` and for
+    input via `HandleMouseClick(x, y)`.
+  - `DisplayFactory` — single place where the bundled scenes are registered
+    (call `AddScene(...)` for each one you want available at runtime).
+  - `Scene` + `Scenes/` — per-frame `UpdateAndDraw` hook plus a `GetName()`
+    label shown in the on-canvas selector. Bundled scenes:
     `Star3DFieldScene`, `FillShapeScene`, `TrianglesScene`.
+  - `UI/` — small overlay drawn on top of the active scene:
+    `PixelFont` (5×7 monospace bitmap font) and `SceneSelectorOverlay`
+    (the `< SCENE_NAME >` bar and its hit-testing).
 - `app/main.cpp` — SDL3 platform shell: opens a resizable window, drives
-  the frame loop, blits the RGBA buffer via a streaming `SDL_Texture`.
-- `tests/swr_tests.cpp` — Catch2 tests for `Bitmap` and `RenderContext`.
+  the frame loop, blits the RGBA buffer via a streaming `SDL_Texture`,
+  and forwards left-mouse clicks to `Display::HandleMouseClick`.
+- `tests/swr_tests.cpp` — Catch2 tests for `Bitmap`, `RenderContext`,
+  `Display`, `PixelFont`, and `SceneSelectorOverlay`.
 
 ## Switching scenes
 
-Edit `Software3DRenderer/SWR/DisplayFactory.cpp` and uncomment the
-`SetScene(...)` line for the scene you want to run.
+Click the `<` and `>` buttons in the `< SCENE_NAME >` bar at the top of
+the window to cycle through the registered scenes at runtime — no rebuild
+needed. Clicks anywhere else fall through to whatever the active scene
+does with input.
+
+To change which scenes are available (or the default starting scene),
+edit the `AddScene(...)` calls in
+`Software3DRenderer/SWR/DisplayFactory.cpp`. The first scene added is
+the one shown on launch; the selector cycles through the list in order
+and wraps at both ends.
 
 Have fun!
