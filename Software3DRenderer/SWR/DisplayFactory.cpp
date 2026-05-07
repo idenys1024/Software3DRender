@@ -15,9 +15,9 @@ std::shared_ptr<Display> DisplayFactory::GetConfiguredDisplay(int w,int h)
 {
     std::shared_ptr<Display> display(new Display(w,h));
     //display->SetScene(std::shared_ptr<Scene>(new Scene()));
-    //display->SetScene(std::shared_ptr<Scene>(new Star3DFieldScene(1000,20.0f,60.0f,5.0f)));
+    display->SetScene(std::shared_ptr<Scene>(new Star3DFieldScene(100000,40.0f,60.0f,5.0f)));
     //display->SetScene(std::shared_ptr<Scene>(new FillShapeScene()));
-    display->SetScene(std::shared_ptr<Scene>(new TrianglesScene()));
+    //display->SetScene(std::shared_ptr<Scene>(new TrianglesScene()));
     
     return display;
 }
