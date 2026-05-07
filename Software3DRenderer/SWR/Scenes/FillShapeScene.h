@@ -17,6 +17,7 @@ public:
     //FillShapeScene();
     //~FillShapeScene();
     virtual void UpdateAndDraw(float deltatime, std::shared_ptr<SWR::RenderContext> renderTarget) override;
+    virtual const char* GetName() const override { return "FILLSHAPE"; }
 protected:
     
 };

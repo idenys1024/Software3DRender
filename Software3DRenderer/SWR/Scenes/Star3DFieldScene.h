@@ -19,6 +19,7 @@ public:
     Star3DFieldScene(int numOfStars, float speed, float spread, float acceleration=0.0f);
     ~Star3DFieldScene();
     virtual void UpdateAndDraw(float deltatime, std::shared_ptr<SWR::RenderContext> renderTarget) override;
+    virtual const char* GetName() const override { return "STARFIELD"; }
 protected:
     struct StarPosition
     {

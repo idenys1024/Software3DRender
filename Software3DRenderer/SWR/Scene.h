@@ -21,6 +21,7 @@ namespace SWR{
         Scene();
         virtual ~Scene();
         virtual void UpdateAndDraw(float deltatime, std::shared_ptr<RenderContext> renderTarget);
+        virtual const char* GetName() const { return "SCENE"; }
     };
 }
 #endif /* defined(__Software3DRenderer__SWRScene__) */

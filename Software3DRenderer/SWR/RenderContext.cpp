@@ -41,6 +41,21 @@ void RenderContext::FillShape(int yMin, int yMax)
     }
 }
 
+void RenderContext::FillRect(int x, int y, int w, int h, uchar r, uchar g, uchar b, uchar a)
+{
+    int x0 = x;
+    int y0 = y;
+    int x1 = x + w;
+    int y1 = y + h;
+    if (x0 < 0) x0 = 0;
+    if (y0 < 0) y0 = 0;
+    if (x1 > _width)  x1 = _width;
+    if (y1 > _height) y1 = _height;
+    for (int j = y0; j < y1; ++j)
+        for (int i = x0; i < x1; ++i)
+            DrawPixel(i, j, a, b, g, r);
+}
+
 void RenderContext::ScanConvertTriangle(Vertex minYv, Vertex midYv, Vertex maxYv, int handedness)
 {
     ScanConvertLine(minYv,maxYv,handedness);

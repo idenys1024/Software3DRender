@@ -11,9 +11,12 @@
 
 #include <stdio.h>
 #include <memory>
+#include <vector>
 
 namespace SWR {
-    
+
+namespace UI { class SceneSelectorOverlay; }
+
 class RenderContext;
 class Scene;
 class Display
@@ -29,9 +32,17 @@ public:
     int GetWidth() const;
     int GetHeight() const;
     void SetScene(std::shared_ptr<Scene> newScene);
+    void AddScene(std::shared_ptr<Scene> newScene);
+    void NextScene();
+    void PrevScene();
+    int  GetSceneCount() const;
+    int  GetCurrentSceneIndex() const;
+    void HandleMouseClick(int x, int y);
 protected:
     std::shared_ptr<RenderContext> _frameBuffer;
-    std::shared_ptr<Scene> _currentScene;
+    std::vector<std::shared_ptr<Scene>> _scenes;
+    int _currentIndex;
+    std::unique_ptr<UI::SceneSelectorOverlay> _overlay;
 };
 }
 #endif /* defined(__Software3DRenderer__SWRDisplay__) */
