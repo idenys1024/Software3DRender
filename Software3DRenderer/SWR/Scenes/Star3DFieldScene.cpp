@@ -7,6 +7,7 @@
 //
 
 #include "Star3DFieldScene.h"
+#define _USE_MATH_DEFINES
 #include <math.h>
 
 
